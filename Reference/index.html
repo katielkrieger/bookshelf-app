@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Google Books API</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/yeti/bootstrap.min.css" rel="stylesheet" integrity="sha384-HzUaiJdCTIY/RL2vDPRGdEQHHahjzwoJJzGUkYjHVzTwXFQ2QN/nVgX7tzoMW3Ov" crossorigin="anonymous">
+  <style>
+    .top {
+      background-color: #E0EAFF;
+      padding-top: 0.5rem;
+    }
+    .clipping {
+      margin-top: 4rem;
+    }
+    div {
+      margin-top: 1rem;
+    }
+    .col-xs-6 {
+      padding-bottom: 2rem;
+    }
+    footer {
+      margin-bottom: 2rem;
+    }
+
+  </style>
+</head>
+<body>
+    <section class="top container">
+      <h1 class="header text-center">Search for a Book
+      </h1>
+      <h2 class="header text-center">By Title or Author
+      </h2>
+    </section>
+    <section class="top container">
+      <div class="row">
+        <form class="form" action="javascript:void(0)">
+          <div class="form-group">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+              <label class="sr-only" for="title">Search Books</label>
+              <input type="text" class="form-control" id="search" placeholder="War and Peace">
+            </div>
+            <div class="col-xs-6 text-right">
+              <button type="submit" class="btn btn-primary search" value="title">Search by title
+              </button>
+            </div>
+            <div class="col-xs-6 text-left">
+              <button type="submit" class="btn btn-default search" value="author">Search by author
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row clipping">
+        <div class="col-xs-10 col-xs-offset-1 holder">
+          <div class="newClipping">
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <a href="https://developer.nytimes.com"><img src="https://books.google.com/books/content?id=bKq3oAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></a>
+        </div>
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script>
+      $(document).ready(function(){
+
+        // add a new item
+
+        var $form = $("form");
+        var $buttons = $(".search");
+        var $clippings = $(".clippings");
+
+        $buttons.on("click", function(event){
+          console.log("clicked");
+
+          // either headlines or all: ($(this).attr("value"));
+
+          var searchText = $('#search').val();
+          var searchArr = searchText.trim().split(" ");
+          var q = "";
+          var type;
+          var apiKey = "AIzaSyCRABm57Bz_UqCnYI850ZUqOjFmkf5rotg";
+
+          for(var i=0; i<searchArr.length; i++){
+            if(i===0){
+              q = q + searchArr[i];
+            } else {
+              q = q + ' AND ' + searchArr[i];
+            }
+          }
+
+          // if($(this).attr("value") === "title"){ // title
+          //   type = "intitle";
+          // } else { // author
+          //   type = "inauthor";
+          // }
+          console.log(q);
+
+          // GET https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+
+
+          var url = `https://www.googleapis.com/books/v1/volumes?q=${q}&key=${apiKey}`;
+
+          $.ajax({
+            url: url,
+            method: 'GET',
+          }).done(function(result) {
+            // console.log(result);
+          }).fail(function(err) {
+            console.log(err);
+            throw err;
+          }).then(function(response){
+            console.log(response);
+            // console.log(response.items[0].volumeInfo.imageLinks.thumbnail);
+
+              var $holder = $(".holder")
+              var $newClipping = $(".newClipping");
+              var $newBold = $("<b>");
+
+              for (var i=0; i<10; i++) {
+                $newClipping.text("No results!");
+                if(response !== undefined){
+
+                  $newClipping.text(response.items[1].volumeInfo.title + " by " + response.items[1].volumeInfo.authors[0])
+                    .css("font-size", "2.5rem")
+                    .css("font-weight", "bold");
+
+                  var $leadDiv = $("<div>")
+                    .text(response.items[1].volumeInfo.description)
+                    .css("font-size", "2rem")
+                    .css("font-weight", "normal")
+                    .css("margin", "2rem 0 2rem 0");
+                  $newClipping.append($leadDiv);
+
+                  // var $yearDiv = $("<div>")
+                  //   .text("DATE: " + response.response.docs[i].pub_date.substring(5,7) + "/" + response.response.docs[i].pub_date.substring(8,10) + "/" + response.response.docs[i].pub_date.substring(0,4))
+                  //   .css("font-size", "1.5rem")
+                  //   .css("font-weight", "lighter");
+                  // $newClipping.append($yearDiv);
+
+                  // var $webDiv = $("<div>")
+                  //   .css("margin-bottom", "1.5rem");
+                  // $newClipping.append($webDiv);
+                  // var $webAnchor = $("<a>")
+                  //   .attr("href",response.response.docs[i].web_url)
+                  //   .text("Click here for original article")
+                  //   .css("font-size", "1.5rem");
+                  // $webDiv.append($webAnchor);
+                  break;
+                }
+              }
+          });
+
+        });
+
+      });
+
+</script>
+</body>
+</html>
