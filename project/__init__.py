@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager, current_user
+from flask_login import LoginManager
 import os
 
 app = Flask(__name__)
@@ -19,6 +19,15 @@ login_manager = LoginManager(app)
 db = SQLAlchemy(app)
 
 from project.users.views import users_blueprint
-from project.users.models import User
 
 app.register_blueprint(users_blueprint, url_prefix='/users')
+
+from project.users.models import User
+
+login_manager.init_app(app)
+login_manager.login_view = "users.login"
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+

@@ -17,7 +17,7 @@
 ## Basic features
 
 * CRUD app with three resources: users, booklists, and bookshelves
-* Authentication for users
+* Authentication for users (THINK ABOUT WHETHER/HOW USERS CAN CHANGE THEIR PASSWORD)
 * The ability to add books using search by title or author (using the Google Books API)
 * The book list has a button to mark a book as read and add a review
 * Prevent the same book from being on a user's booklist and bookshelf
@@ -34,6 +34,14 @@
 * A D3 vizualization using the book metadata collected
 * The ability to see all reviews by users you are following when you click on a book's show page
 * The ability to send a specific user or email address a book recommendation
+
+## Milestone targets
+
+* Monday - auth working, user routes set up, Heroku set up
+* Tuesday - book routes added, book search working
+* Wednesday - styling and testing
+* Thursday - readme, bonuses
+* Friday - bonuses, finish readme, final push to Github and Heroku
 
 ## Database schema
 
@@ -66,3 +74,63 @@ https://www.googleapis.com/books/v1/volumes/bKq3oAEACAAJ
 - userRating (1-10) -- bookShelf only
 - userReview (text) -- bookShelf only
 - comments (text) -- bookList only (e.g., friend recommended it to me, or I read about it in the NYT)
+
+## Root page
+
+A welcome page, with links to log in or sign up, plus a link to check out the user index.
+
+## User pages
+
+### Index
+
+A display of users so you can browse others to see who you might want to follow or look at. Login not required.
+
+### New
+
+New user sign up page.
+
+### Show
+
+See a user's information, including username, name, and links to their booklists and bookshelves. 
+
+### Edit
+
+Edit a user's account information (username, name, email), plus a link to a separate page to edit their password.
+
+## Booklist pages
+
+### Index
+
+A display of all books on a user's booklist. Titles and thumbnails. Login not required.
+
+### New
+
+A page to add a new book to the user's booklist, using search with the Google Books API. 
+
+### Show
+
+A page showing a user's book, including the user's notes about why they want to read it. Also shows a photo of the book, the description, number of pages, snippet, etc. Login not required.
+
+
+### Edit
+
+A page to edit a user's book notes, including an option to move it to their bookshelf, or delete it from their booklist.
+
+
+## Bookshelf pages
+
+### Index
+
+A display of all books on a user's bookshelf. Titles and thumbnails. Login not required.
+
+### New
+
+A page to add a new book to the user's bookshelf, using search with the Google Books API. 
+
+### Show
+
+A page showing a user's book, including the user's rating and review. Also shows a photo of the book, the description, number of pages, snippet, etc. Login not required.
+
+### Edit
+
+A page to edit a user's book rating and/or review, or to remove it from their bookshelf.

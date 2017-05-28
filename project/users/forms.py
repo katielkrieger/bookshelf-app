@@ -7,3 +7,12 @@ class UserForm(FlaskForm):
     password = PasswordField('password', validators=[Length(min=6)])
     name = StringField('name', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired(), Email()])
+
+class UpdateForm(FlaskForm):
+    username = StringField('username', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), Email()])
+
+class LogInForm(FlaskForm):
+    username = StringField('username', validators=[DataRequired()])
+    password = PasswordField('password', validators=[Length(min=6)])

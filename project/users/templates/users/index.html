@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for message in get_flashed_messages() %}
+  <div>{{ message }}</div>
+{% endfor %}
+
+{% for user in users %}
+
+  <p>
+    <a href="{{ url_for('users.show', user_id=user.id)}}" >{{user.username}}</a>
+  </p>
+
+{% endfor %}
 
 {% endblock %}
