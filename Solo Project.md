@@ -6,7 +6,7 @@
 * File path: `Rithm/Heroku/Full Books App`
 * Virtual env: `solo-project`
 * Database: `solo-project`
-* Heroku app name : `my-bookshelves`
+* Heroku app name : `my-bookshelves` (secret key is `webinarz`)
 * GitHub repo: TBD
 
 ## General resources
