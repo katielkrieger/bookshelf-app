@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
@@ -24,8 +24,10 @@ login_manager = LoginManager(app)
 db = SQLAlchemy(app)
 
 from project.users.views import users_blueprint
+from project.booklists.views import booklists_blueprint
 
 app.register_blueprint(users_blueprint, url_prefix='/users')
+app.register_blueprint(booklists_blueprint, url_prefix='/users/<int:user_id>/booklists')
 
 from project.users.models import User
 
@@ -35,4 +37,8 @@ login_manager.login_view = "users.login"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
+
+@app.route('/')
+def search():
+    return render_template('search.html')
 

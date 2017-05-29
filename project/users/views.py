@@ -1,6 +1,6 @@
 from flask import redirect, render_template, request, url_for, Blueprint, flash
 from project.users.models import User
-from project.users.forms import UserForm, UpdateForm, LogInForm
+from project.users.forms import UserForm, UpdateForm, LogInForm, UpdatePasswordForm
 from project import db, bcrypt
 from sqlalchemy.exc import IntegrityError
 from flask_login import login_user, logout_user, current_user, login_required
@@ -27,16 +27,22 @@ def index():
 
 @users_blueprint.route('/signup', methods=["GET", "POST"])
 def signup():
-    form = UserForm()
-    if form.validate_on_submit():
-        try:
-            new_user = User(request.form['username'], request.form['password'], request.form['name'], request.form['email'])
-            db.session.add(new_user)
-            db.session.commit()
-            login_user(new_user)
-        except IntegrityError as e:
-            flash("Username has been taken")
-            return render_template('users/signup.html', form=form)
+    form = UserForm(request.form)
+    if request.method == "POST":
+        if form.validate():
+            try:
+                new_user = User(
+                    request.form['username'], 
+                    request.form['password'], 
+                    request.form['name'], 
+                    request.form['email']
+                )
+                db.session.add(new_user)
+                db.session.commit()
+                login_user(new_user)
+            except IntegrityError as e:
+                flash("Username has been taken")
+                return render_template('users/signup.html', form=form)
         return redirect(url_for('users.index'))
     return render_template('users/signup.html', form=form)
 
@@ -87,6 +93,29 @@ def show(user_id):
 @ensure_correct_user
 def edit(user_id):
     user = User.query.get_or_404(user_id)
-    form = UserForm()
+    form = UserForm(request.form)
     return render_template('users/edit.html', form=form, user=user)
+
+@users_blueprint.route('/<int:user_id>/edit_password', methods=["GET", "PATCH"])
+@login_required
+@ensure_correct_user
+def edit_password(user_id):
+    found_user = User.query.get_or_404(user_id)
+    if request.method == b"PATCH":
+        form = UpdatePasswordForm(request.form)
+        if form.validate():
+            authenticated_user = bcrypt.check_password_hash(found_user.password, request.form['old_password'])
+            if authenticated_user and (request.form['new_password'] == request.form['confirm_password']):
+                found_user.password = bcrypt.generate_password_hash(request.form['new_password']).decode('UTF-8')
+                db.session.add(found_user)
+                db.session.commit()
+                flash("Password updated successfully")
+                return redirect(url_for('users.index'))
+            flash("Passwords do not match. Please try again.")
+            return render_template("users/edit_password.html", form=form, user=found_user)
+        flash("Please correct errors shown and resubmit")
+        return render_template("users/edit_password.html", form=form, user=found_user)
+    form = UpdatePasswordForm()
+    return render_template('users/edit_password.html', form=form, user=found_user)
+
 

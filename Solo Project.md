@@ -14,10 +14,18 @@
 * Blueprints [here](https://github.com/rithmschool/python_curriculum/blob/master/Unit-02/01-blueprints.md)
 * Testing [here](https://github.com/rithmschool/python_curriculum/blob/master/Unit-02/04-flask_login.md)
 
+## Questions/Issues
+
+1. Getting confused about database setup. 
+2. How to get form data from the search results.
+3. Rating has to be 1-10, so when people are adding to their booklist, it will be empty and cause a form error. May have similar issue with URL validators.
+2. ImplementationError when trying to run my tests.
+3. Try to remove duplicates from book searches.
+
 ## Basic features
 
 * CRUD app with three resources: users, booklists, and bookshelves
-* Authentication for users (THINK ABOUT WHETHER/HOW USERS CAN CHANGE THEIR PASSWORD)
+* Authentication for users, including opportunity to change their password
 * The ability to add books using search by title or author (using the Google Books API)
 * The book list has a button to mark a book as read and add a review
 * Prevent the same book from being on a user's booklist and bookshelf
@@ -110,6 +118,12 @@ A page to add a new book to the user's booklist, using search with the Google Bo
 ### Show
 
 A page showing a user's book, including the user's notes about why they want to read it. Also shows a photo of the book, the description, number of pages, snippet, etc. Login not required.
+
+To access a user's book review: 
+user = User.query.get_or_404(user_id)
+book = Book.query.get_or_404(book_id)
+user_book = db.session.query(Booklist).filter_by(user=user).filter_by(book=book)
+user_book.first().rating (or comments or review)
 
 
 ### Edit

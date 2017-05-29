@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+  <div>{{ message }}</div>
+{% endfor %}
+
+<form action="{{ url_for('booklists.index', user_id=user.id) }}" method="POST">
+  {{ form.csrf_token }}
+  <p>
+    {{ form.title(placeholder="title") }}
+    <span class="text-danger">
+      {% if form.title.errors %}
+        {% for error in form.title.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.author(placeholder="author") }}
+    <span class="text-danger">
+      {% if form.author.errors %}
+        {% for error in form.author.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.categories(placeholder="categories") }}
+    <span class="text-danger">
+      {% if form.categories.errors %}
+        {% for error in form.categories.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.snippet(placeholder="snippet") }}
+    <span class="text-danger">
+      {% if form.snippet.errors %}
+        {% for error in form.snippet.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.description(placeholder="description") }}
+    <span class="text-danger">
+      {% if form.description.errors %}
+        {% for error in form.description.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.pages(placeholder="pages") }}
+    <span class="text-danger">
+      {% if form.pages.errors %}
+        {% for error in form.pages.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.image_url(placeholder="image url") }}
+    <span class="text-danger">
+      {% if form.image_url.errors %}
+        {% for error in form.image_url.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.preview_url(placeholder="preview url") }}
+    <span class="text-danger">
+      {% if form.preview_url.errors %}
+        {% for error in form.preview_url.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.date_published(placeholder="date published") }}
+    <span class="text-danger">
+      {% if form.date_published.errors %}
+        {% for error in form.date_published.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.list_type(placeholder="list type") }}
+    <span class="text-danger">
+      {% if form.list_type.errors %}
+        {% for error in form.list_type.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.comments(placeholder="comments") }}
+    <span class="text-danger">
+      {% if form.comments.errors %}
+        {% for error in form.comments.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.rating(placeholder="rating") }}
+    <span class="text-danger">
+      {% if form.rating.errors %}
+        {% for error in form.rating.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.review(placeholder="review") }}
+    <span class="text-danger">
+      {% if form.review.errors %}
+        {% for error in form.review.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+
+  <button type="submit">Add to your booklist</button>
+</form>
+
+
+{% endblock %}
