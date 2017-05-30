@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for message in get_flashed_messages() %}
+  <div>{{ message }}</div>
+{% endfor %}
 
+
+<h1>{{ user.username }}'s Book
+</h1>
+
+
+
+{% if book.list_type == "booklist" %}
+  <img src="{{ book.book.image_url }}">
+  {{ book.book.title }}: {{ book.comments }}
+{% endif %}
+
+<div>
+  EDIT BOOK COMMENTS
+</div>
+
+<div>
+  MOVE BOOK TO BOOKSHELF AND ADD REVIEW AND RATING
+</div>
+
+<div>
+  REMOTE BOOK FROM BOOKLIST
+</div>
 
 {% endblock %}

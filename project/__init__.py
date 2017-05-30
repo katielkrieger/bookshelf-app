@@ -1,4 +1,5 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request, redirect
+from project.booklists.forms import BooklistForm
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
@@ -39,6 +40,6 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 @app.route('/')
-def search():
-    return render_template('search.html')
+def root():
+    return redirect(url_for('users.index'))
 

@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% for message in get_flashed_messages() %}
+  <div>{{ message }}</div>
+{% endfor %}
 
+<h1>{{ user.username }}'s Booklist
+</h1>
+
+
+{% for book in books %}
+  {% if book.list_type == "booklist" %}
+    <p>
+      <img src="{{ book.book.image_url }}">
+      {{ book.book.title }}: {{ book.comments }}
+    </p>
+  {% endif %}
+{% endfor %}
+
+{# for use in the bookshelf index page ----> }
+
+
+{# {% for book in books %}
+  {% if book.list_type == "booklist" %}
+    <p>
+      {{ book.book.title }}: {{ book.review }} ({{ book.rating }} out of 10)
+    </p>
+  {% endif %}
+{% endfor %} #}
 
 {% endblock %}

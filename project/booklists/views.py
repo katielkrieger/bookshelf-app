@@ -45,7 +45,7 @@ def index(user_id):
         new_booklist = Booklist(
           list_type='booklist',
           comments=request.form['comments'],
-          rating='',
+          rating=1,
           review='',
           user=user,
           book=new_book
@@ -62,13 +62,15 @@ def index(user_id):
         )
         db.session.add(new_bookshelf)
       db.session.commit()
-     # test = db.session.query(Booklist).filter_by(user=user).filter_by(book=new_book)
+      # test = db.session.query(Booklist).filter_by(user=user).filter_by(book=new_book)
       # from IPython import embed; embed()
-      flash("Book successfully added to your booklist")
+      flash("Book added successfully!")
       return redirect(url_for('booklists.index', user_id=user_id))
-    flash("Please correct errors shown and resubmit")
+    flash("Please try again")
     return render_template('booklists/new.html', form=form, user=user)
-  return render_template('booklists/index.html', form=form, user=user)
+  all_books = db.session.query(Booklist).filter_by(user=user).all()
+  return render_template('booklists/index.html', form=form, user=user, books=all_books)
+
 
 @booklists_blueprint.route('/new')
 @login_required
@@ -84,6 +86,7 @@ def new(user_id):
 def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
+  user_book = db.session.query(Booklist).filter_by(user=user).filter_by(book=book).first()
   form = BooklistForm(request.form)
   if request.method == b"PATCH":
     if form.validate():
@@ -99,7 +102,7 @@ def show(user_id, book_id):
       db.session.commit()
       flash("Book successfully removed from your booklist")
       return redirect(url_for('booklists.index', user_id=user_id))
-  return render_template('booklists/show.html', book=book, form=form, user=user)
+  return render_template('booklists/show.html', book=user_book, form=form, user=user)
 
 @booklists_blueprint.route('/<int:book_id>/edit')
 @login_required

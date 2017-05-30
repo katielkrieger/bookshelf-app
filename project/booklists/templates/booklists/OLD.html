@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% for message in get_flashed_messages() %}
+  <div>{{ message }}</div>
+{% endfor %}
+
+<form action="{{ url_for('booklists.search', user_id=user.id, book_id=book.id) }}" method="POST">
+  {{ form.csrf_token }}
+  <p>
+    {{ form.comments(placeholder="comments") }}
+    <span class="text-danger">
+      {% if form.comments.errors %}
+        {% for error in form.comments.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+{#   <p>
+    {{ form.rating(placeholder="rating") }}
+    <span class="text-danger">
+      {% if form.rating.errors %}
+        {% for error in form.rating.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.review(placeholder="review") }}
+    <span class="text-danger">
+      {% if form.review.errors %}
+        {% for error in form.review.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p> #}
+
+  <button type="submit">Add to your booklist</button>
+</form>
+
+
+{% endblock %}
