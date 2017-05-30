@@ -1,0 +1,32 @@
+html, body {
+  height: 96.75%;
+  margin: 0;
+  padding: 0;
+}
+
+.home {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  left: 0;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+section {
+  flex: 1;
+}
+
+.bottom {
+  margin-top: 6rem;
+  padding: 1.5rem 0rem 0rem 0rem;
+}
+
+.bottom-img {
+  max-width: 100%;
+  max-height: 100%;
+}

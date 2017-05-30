@@ -12,7 +12,7 @@
 {% for book in books %}
   {% if book.list_type == "booklist" %}
     <p>
-      <img src="{{ book.book.image_url }}">
+      <a href="{{ url_for('booklists.show', user_id=user.id, book_id=book.book.id) }}"><img src="{{ book.book.image_url }}"></a>
       {{ book.book.title }}: {{ book.comments }}
     </p>
   {% endif %}

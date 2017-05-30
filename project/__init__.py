@@ -1,8 +1,8 @@
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 import os
 
 app = Flask(__name__)
@@ -42,5 +42,8 @@ def load_user(user_id):
 
 @app.route('/')
 def root():
-    return redirect(url_for('users.index'))
+    if current_user.is_anonymous:
+        return render_template('home.html')
+    else:
+        return redirect(url_for('users.index'))
 

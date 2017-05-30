@@ -33,7 +33,16 @@
   </div>
 {% endif %}
 
-<h1>Move {{ book.title }} to your bookshelf</h1>
+
+<h2>Other options</h2>
+
+
+<h3>
+  Make changes
+</h3>
+<div><a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}">Edit comments or delete book</a></div>
+
+<h3>Move {{ book.title }} to your bookshelf</h3>
 
 <form action="{{ url_for('bookshelves.show', user_id=user.id, book_id=book.book.id) }}?_method=PATCH" method="POST">
   {{ form.csrf_token }}
@@ -60,16 +69,8 @@
   <button type="submit align-right">Submit review</button>
 </form>
 
-<div>
-  EDIT BOOK COMMENTS
-</div>
 
-<div>
-  MOVE BOOK TO BOOKSHELF AND ADD REVIEW AND RATING
-</div>
 
-<div>
-  REMOTE BOOK FROM BOOKLIST
-</div>
+
 
 {% endblock %}

@@ -21,11 +21,11 @@
 </p>
 
 <p>
-  <a href="#">Check out {{ user.username }}'s booklist</a>
+  <a href="{{ url_for('booklists.index', user_id=user.id) }}">Check out {{ user.username }}'s booklist</a>
 </p>
 
 <p>
-  <a href="#">Check out {{ user.username }}'s bookshelf</a>
+  <a href="{{ url_for('bookshelves.index', user_id=user.id) }}">Check out {{ user.username }}'s bookshelf</a>
 </p>
 
 <p>

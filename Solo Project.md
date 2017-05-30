@@ -35,6 +35,7 @@
 ## Bonus features
 
 * Showing a NYT book review on the book show pages
+* Parallax home page
 * DONE - Add a test to check password reset
 * Remove duplicates from the book search
 * The ability to follow other users and see their booklists/bookshelves
