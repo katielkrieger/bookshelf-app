@@ -59,8 +59,21 @@ section {
   visibility: hidden;
 }
 
+.add-form {
+  margin-top: 2rem;
+}
+
 .search {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
+input[type="radio"]{
+  margin: 0 0 0 10px;
+}
+
+.rating {
+  color: #ACB2BA;
+  font-size: 16px;
+
+}

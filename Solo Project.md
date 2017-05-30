@@ -17,7 +17,9 @@
 ## Questions/Issues
 
 1. Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.
-2. GET request 404 error when searching for Gone Girl. Where is it being told to search for None found?
+3. On Heroku, signup says "Username has been taken" even for new usernames.
+4. Make it so user can click on title or description, in addition to book cover, to select a book.
+5. Rating/review is not centered when description is longer than cover.
 
 ## Basic features
 

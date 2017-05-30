@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, HiddenField
+from wtforms import StringField, IntegerField, HiddenField, RadioField
 from wtforms.validators import DataRequired, NumberRange, AnyOf
 from wtforms.widgets import TextArea
 
@@ -14,10 +14,9 @@ class BookshelfForm(FlaskForm):
     image_url=HiddenField()#StringField('image_url')  
     preview_url=HiddenField()#StringField('preview_url')  
     date_published=HiddenField()#StringField('date_published')  
-    # comments = StringField('comments', widget=TextArea())
-    rating = IntegerField('rating', validators=[NumberRange(min=1, max=10)])
+    rating = RadioField('rating', choices=[("1",1),("2",2),("3",3),("4",4),("5",5),("6",6),("7",7),("8",8),("9",9),("10",10)], default='1', validators=[DataRequired()])
     review = StringField('review', widget=TextArea())
 
 class EditBookshelfForm(FlaskForm):
-    rating = IntegerField('rating', validators=[NumberRange(min=1, max=10)])
+    rating = RadioField('rating', choices=[1,2,3,4,5,6,7,8,9,10], validators=[NumberRange(min=1, max=10)])
     review = StringField('review', widget=TextArea())

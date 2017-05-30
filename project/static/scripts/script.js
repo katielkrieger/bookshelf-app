@@ -29,7 +29,7 @@ $(document).ready(function(){
     }).done(function(result) {
     }).fail(function(err) {
       console.log(err);
-      throw err;
+      // throw err;
     }).then(function(response){
       console.log(response);
 
@@ -38,18 +38,7 @@ $(document).ready(function(){
         // remove old list, if applicable
         var $oldBooks = $(".book");
         $oldBooks.remove();
-        array = [
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-          {},
-        ];
+        array = [{},{},{},{},{},{},{},{},{},{},];
         if(response !== undefined){
           for (var i=0; i<Math.min(response.items.length, 10); i++) {
 
