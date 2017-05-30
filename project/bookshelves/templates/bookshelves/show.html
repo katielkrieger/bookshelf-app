@@ -9,10 +9,15 @@
 <h1>{{ user.username }}'s Book
 </h1>
 
-{% if book.list_type == "booklist" %}
+
+{% if book.list_type == "bookshelf" %}
+
   <img src="{{ book.book.image_url }}">
-  {{ book.book.title }}: {{ book.comments }}
-  <div>About this book</div>
+  {{ book.book.title }}: {{ book.rating }} out of 10
+  <div>
+    {{ book.review }}
+  </div>  
+    <div>About this book</div>
   <div>
     Author: {{ book.book.author }}
   </div>
@@ -34,15 +39,11 @@
 {% endif %}
 
 <div>
-  EDIT BOOK COMMENTS
+  EDIT BOOK REVIEW
 </div>
 
 <div>
-  MOVE BOOK TO BOOKSHELF AND ADD REVIEW AND RATING
-</div>
-
-<div>
-  REMOTE BOOK FROM BOOKLIST
+  REMOTE BOOK FROM BOOKSHELF
 </div>
 
 {% endblock %}

@@ -5,18 +5,15 @@
   <div>{{ message }}</div>
 {% endfor %}
 
-<h1>{{ user.username }}'s Booklist
+<h1>{{ user.username }}'s Bookshelf
 </h1>
 
-
 {% for book in books %}
-  {% if book.list_type == "booklist" %}
+  {% if book.list_type == "bookshelf" %}
     <p>
-      <img src="{{ book.book.image_url }}">
-      {{ book.book.title }}: {{ book.comments }}
+      {{ book.book.title }}: {{ book.review }} ({{ book.rating }} out of 10)
     </p>
   {% endif %}
 {% endfor %}
-
 
 {% endblock %}

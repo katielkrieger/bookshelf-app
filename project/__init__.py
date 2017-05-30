@@ -1,5 +1,4 @@
-from flask import Flask, render_template, url_for, request, redirect
-from project.booklists.forms import BooklistForm
+from flask import Flask, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_modus import Modus
 from flask_bcrypt import Bcrypt
@@ -26,9 +25,11 @@ db = SQLAlchemy(app)
 
 from project.users.views import users_blueprint
 from project.booklists.views import booklists_blueprint
+from project.bookshelves.views import bookshelves_blueprint
 
 app.register_blueprint(users_blueprint, url_prefix='/users')
 app.register_blueprint(booklists_blueprint, url_prefix='/users/<int:user_id>/booklists')
+app.register_blueprint(bookshelves_blueprint, url_prefix='/users/<int:user_id>/bookshelves')
 
 from project.users.models import User
 
