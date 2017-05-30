@@ -2,6 +2,7 @@ from flask import redirect, render_template, request, url_for, Blueprint, flash
 from project.booklists.models import Book
 from project.users.models import User, Booklist
 from project.booklists.forms import BooklistForm, EditBooklistForm
+from project.bookshelves.forms import EditBookshelfForm
 from project import db, bcrypt
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
@@ -76,8 +77,8 @@ def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
   booklist = db.session.query(Booklist).filter_by(user=user).filter_by(book=book).first()
-  form = EditBooklistForm(request.form)
   if request.method == b"PATCH":
+    form = EditBooklistForm(request.form)
     if form.validate():
       # make it so they can only update the comments OR move to their bookshelf!!!!!
       booklist.comments = request.form['comments']
@@ -86,12 +87,14 @@ def show(user_id, book_id):
       flash("Book successfully updated")
       return redirect(url_for('booklists.index', user_id=user_id))
   if request.method == b"DELETE":
+    form = EditBooklistForm(request.form)
     if form.validate():
       db.session.delete(booklist)
       db.session.delete(book)
       db.session.commit()
       flash("Book successfully removed from your booklist")
       return redirect(url_for('booklists.index', user_id=user_id))
+  form = EditBookshelfForm(request.form)
   return render_template('booklists/show.html', book=booklist, form=form, user=user)
 
 @booklists_blueprint.route('/<int:book_id>/edit')

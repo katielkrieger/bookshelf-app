@@ -33,6 +33,33 @@
   </div>
 {% endif %}
 
+<h1>Move {{ book.title }} to your bookshelf</h1>
+
+<form action="{{ url_for('bookshelves.show', user_id=user.id, book_id=book.book.id) }}?_method=PATCH" method="POST">
+  {{ form.csrf_token }}
+  <p>
+    {{ form.rating(placeholder="rating") }}
+    <span class="text-danger">
+      {% if form.rating.errors %}
+        {% for error in form.rating.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+    {{ form.review(placeholder="review") }}
+    <span class="text-danger">
+      {% if form.review.errors %}
+        {% for error in form.review.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <button type="submit align-right">Submit review</button>
+</form>
+
 <div>
   EDIT BOOK COMMENTS
 </div>

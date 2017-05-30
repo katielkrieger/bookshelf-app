@@ -43,22 +43,24 @@ def signup():
             except IntegrityError as e:
                 flash("Username has been taken")
                 return render_template('users/signup.html', form=form)
+        flash("Welcome!")
         return redirect(url_for('users.index'))
     return render_template('users/signup.html', form=form)
 
 @users_blueprint.route('/login', methods=["GET","POST"])
 def login():
     form = LogInForm(request.form)
-    if form.validate_on_submit():
-        found_user = User.query.filter_by(username = form.username.data).first()
-        if found_user:
-            authenticated_user = bcrypt.check_password_hash(found_user.password, request.form['password'])
-            if authenticated_user:
-                login_user(found_user)
-                flash("Welcome!")
-                return redirect(url_for('users.index'))
-    if form.is_submitted():
-        flash("Username and password don't match")
+    if request.method == "POST":
+        if form.validate():
+            found_user = User.query.filter_by(username = form.username.data).first()
+            if found_user:
+                authenticated_user = bcrypt.check_password_hash(found_user.password, request.form['password'])
+                if authenticated_user:
+                    login_user(found_user)
+                    flash("Welcome!")
+                    return redirect(url_for('users.index'))
+            flash("Username and password do not match")
+            return render_template('users/login.html', form=form)
     return render_template('users/login.html', form=form)
 
 @users_blueprint.route('/logout')

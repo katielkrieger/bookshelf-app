@@ -18,9 +18,6 @@
 
 1. Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.
 2. GET request 404 error when searching for Gone Girl. Where is it being told to search for None found?
-3. Rating has to be 1-10, so when people are adding to their bookshelf, it will be empty and cause a form error. May have similar issue with URL validators.
-2. ImplementationError when trying to run my tests.
-3. Try to remove duplicates from book searches.
 
 ## Basic features
 
@@ -38,6 +35,8 @@
 ## Bonus features
 
 * Showing a NYT book review on the book show pages
+* DONE - Add a test to check password reset
+* Remove duplicates from the book search
 * The ability to follow other users and see their booklists/bookshelves
 * A D3 vizualization using the book metadata collected
 * The ability to see all reviews by users you are following when you click on a book's show page

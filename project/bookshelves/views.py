@@ -81,6 +81,7 @@ def show(user_id, book_id):
     if form.validate():
       bookshelf.rating = request.form['rating']
       bookshelf.review = request.form['review']
+      bookshelf.list_type = "bookshelf"
       db.session.add(bookshelf)
       db.session.commit()
       flash("Book successfully updated")

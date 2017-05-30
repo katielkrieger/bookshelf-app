@@ -6,6 +6,8 @@
   <div>{{ message }}</div>
 {% endfor %}
 
+Please login
+
 <form action="{{ url_for('users.login') }}" method="POST">
   {{ form.csrf_token }}
   <p>
