@@ -27,7 +27,7 @@ section {
 }
 
 .bottom {
-  margin-top: 6rem;
+  margin-top: 2rem;
   padding: 1.5rem 0rem 0rem 0rem;
 }
 
@@ -51,8 +51,16 @@ section {
 }
 
 .login {
-  margin-top: 30%;
+  margin-top: 20%;
   font-size: 2rem;
 }
 
+.form-hidden {
+  visibility: hidden;
+}
+
+.search {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 

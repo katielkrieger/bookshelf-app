@@ -40,11 +40,11 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user)
+                flash("Welcome!")
+                return redirect(url_for('users.index'))
             except IntegrityError as e:
                 flash("Username has been taken")
                 return render_template('users/signup.html', form=form)
-        flash("Welcome!")
-        return redirect(url_for('users.index'))
     return render_template('users/signup.html', form=form)
 
 @users_blueprint.route('/login', methods=["GET","POST"])

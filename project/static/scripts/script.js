@@ -38,129 +38,17 @@ $(document).ready(function(){
         // remove old list, if applicable
         var $oldBooks = $(".book");
         $oldBooks.remove();
-
-
-        var objEach0 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach1 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach2 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach3 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach4 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach5 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach6 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach7 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach8 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
-        var objEach9 = {
-          title: null,
-          author: null,
-          categories: null,
-          snippet: null,
-          description: null,
-          pages: null,
-          image_url: null,
-          preview_url: null,
-          date_published: null
-        };
         array = [
-          objEach0,
-          objEach1,
-          objEach2,
-          objEach3,
-          objEach4,
-          objEach5,
-          objEach6,
-          objEach7,
-          objEach8,
-          objEach9,
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
         ];
         if(response !== undefined){
           for (var i=0; i<Math.min(response.items.length, 10); i++) {
@@ -244,8 +132,9 @@ $(document).ready(function(){
   $(".holder").on("click", "img", function(event){
       console.log("book selected");
 
+      $selectedBook = $(event.target).parent().parent()
 
-      var i = parseInt($(event.target).parent().parent().attr('data-info'));
+      var i = parseInt($selectedBook.attr('data-info'));
       console.log(array[i]);
 
       // var $title = $('input[name=title]');
@@ -277,6 +166,25 @@ $(document).ready(function(){
       $image_url.val(array[i].image_url);
       $preview_url.val(array[i].preview_url);
       $date_published.val(array[i].date_published);
+
+      // show form-hidden
+      $hiddenForm = $(".form-hidden");
+      $hiddenForm.css("visibility","visible")
+                 .appendTo($selectedBook);
+
+      // unstyle any other books
+      $otherBooks = $(".book");
+      $otherBooks.css("borderStyle", "hidden")
+                 .css("borderWidth", "0rem")
+                 .css("padding-top","0rem")
+                 .css("padding-bottom","0rem");
+
+      // style book selected
+      $selectedBook.css("borderStyle","solid")
+                   .css("borderWidth",".5rem")
+                   .css("padding-top","1rem")
+                   .css("padding-bottom","1rem");
+
 
   });
 
