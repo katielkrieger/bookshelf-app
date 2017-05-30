@@ -4,6 +4,10 @@ html, body {
   padding: 0;
 }
 
+.alert {
+  color: black;
+}
+
 .home {
   position: absolute;
   max-width: 100%;
@@ -44,10 +48,6 @@ section {
 
 .navbar span, .navbar-default, .navbar-default .navbar-nav>li>a {
   color: white;
-}
-
-.msg {
-  font-size: 10rem;
 }
 
 .login {
