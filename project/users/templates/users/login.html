@@ -3,36 +3,42 @@
 
 
 {% for message in get_flashed_messages() %}
-  <div>{{ message }}</div>
+  <div class="msg">{{ message }}</div>
 {% endfor %}
 
-Please login
+<div class="row text-center login">
+  <div class="col-xs-12">
 
-<form action="{{ url_for('users.login') }}" method="POST">
-  {{ form.csrf_token }}
-  <p>
-    {{ form.username(placeholder="username") }}
-    <span class="text-danger">
-      {% if form.username.errors %}
-        {% for error in form.username.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-  <p>
-    {{ form.password(placeholder="password") }}
-    <span class="text-danger">
-      {% if form.password.errors %}
-        {% for error in form.password.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
 
-  <button type="submit">Log in</button>
-</form>
 
+    <h3>Please login</h3>
+
+    <form action="{{ url_for('users.login') }}" method="POST">
+      {{ form.csrf_token }}
+      <p>
+        {{ form.username(placeholder="username") }}
+        <span class="text-danger">
+          {% if form.username.errors %}
+            {% for error in form.username.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </p>
+      <p>
+        {{ form.password(placeholder="password") }}
+        <span class="text-danger">
+          {% if form.password.errors %}
+            {% for error in form.password.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </p>
+
+      <button type="submit" class="btn btn-secondary">Log in</button>
+    </form>
+  </div>
+</div>
 
 {% endblock %}

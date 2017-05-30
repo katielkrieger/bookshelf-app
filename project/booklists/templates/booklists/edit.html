@@ -2,7 +2,7 @@
 {% block content %}
 
 {% for message in get_flashed_messages() %}
-  <div>{{ message }}</div>
+  <div class="msg">{{ message }}</div>
 {% endfor %}
 
 <h1>Edit notes about {{ book.title }}</h1>

@@ -15,6 +15,7 @@ html, body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  margin-top: 0px;
 }
 
 section {
@@ -26,7 +27,32 @@ section {
   padding: 1.5rem 0rem 0rem 0rem;
 }
 
-.bottom-img {
+.bottom-img, .top-img {
   max-width: 100%;
   max-height: 100%;
 }
+
+.top-img {
+  margin-top: -22px;
+}
+
+.navbar {
+  background-image: url('../images/home-cropped-top.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.navbar span, .navbar-default, .navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.msg {
+  font-size: 10rem;
+}
+
+.login {
+  margin-top: 30%;
+  font-size: 2rem;
+}
+
+
