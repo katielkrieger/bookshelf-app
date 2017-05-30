@@ -172,13 +172,13 @@ $(document).ready(function(){
               array[i].categories = response.items[i].volumeInfo.categories || "None found";
               array[i].description = response.items[i].volumeInfo.description || "None found";
               array[i].pages = response.items[i].volumeInfo.pageCount || "None found";
+              array[i].preview_url = response.items[i].volumeInfo.previewLink || "None found";
+              array[i].date_published = response.items[i].volumeInfo.publishedDate || "None found"; 
               if (response.items[i].volumeInfo.imageLinks) {
                 array[i].image_url = response.items[i].volumeInfo.imageLinks.thumbnail || "None found";
               } else {
                 array[i].image_url = "None found";
               }
-              array[i].preview_url = response.items[i].volumeInfo.previewLink || "None found";
-              array[i].date_published = response.items[i].volumeInfo.publishedDate || "None found"; 
             } else {
               array[i].title = "None found";
               array[i].author = "None found";
@@ -242,9 +242,11 @@ $(document).ready(function(){
   // add event listener for selection of one of the books
 
   $(".holder").on("click", "img", function(event){
-      console.log("book selected!!");
+      console.log("book selected");
+
 
       var i = parseInt($(event.target).parent().parent().attr('data-info'));
+      console.log(array[i]);
 
       // var $title = $('input[name=title]');
       var $title = $('#title');
@@ -254,10 +256,8 @@ $(document).ready(function(){
       var $description = $('#description');
       var $pages = $('#pages');
       var $image_url = $('#image_url');
-      var $preview_url = $('#date_published');
+      var $preview_url = $('#preview_url');
       var $date_published = $('#date_published');
-
-      console.log("title");
 
       $title.val(array[i].title);
       // $title.val(array[i].title);
@@ -273,12 +273,10 @@ $(document).ready(function(){
       }
       $snippet.val(array[i].snippet);
       $description.val(array[i].description);
-      $pages.val(array[i].pageCount);
-      $image_url.val(array[i].thumbnail);
-      $preview_url.val(array[i].previewLink);
-      $date_published.val(array[i].publishedDate);
-
-      console.log("Updated")
+      $pages.val(array[i].pages);
+      $image_url.val(array[i].image_url);
+      $preview_url.val(array[i].preview_url);
+      $date_published.val(array[i].date_published);
 
   });
 

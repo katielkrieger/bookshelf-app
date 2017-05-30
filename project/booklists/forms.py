@@ -15,5 +15,5 @@ class BooklistForm(FlaskForm):
     preview_url=StringField('preview_url', validators=[URL()])  
     date_published=StringField('date_published')  
     comments = StringField('comments', widget=TextArea())
-    rating = IntegerField('rating', validators=[NumberRange(min=1, max=10)])
-    review = StringField('review', widget=TextArea())
+    # rating = IntegerField('rating', validators=[NumberRange(min=1, max=10)])
+    # review = StringField('review', widget=TextArea())

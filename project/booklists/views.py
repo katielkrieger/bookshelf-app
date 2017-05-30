@@ -41,26 +41,25 @@ def index(user_id):
         date_published=request.form['date_published'], 
       )
       db.session.add(new_book)
-      if (request.form['list_type'] == "booklist"):
-        new_booklist = Booklist(
-          list_type='booklist',
-          comments=request.form['comments'],
-          rating=1,
-          review='',
-          user=user,
-          book=new_book
-        )
-        db.session.add(new_booklist)
-      else: 
-        new_bookshelf = Booklist(
-          list_type='bookshelf',
-          comments='',
-          rating=request.form['rating'],
-          review=request.form['review'],
-          user=user,
-          book=new_book
-        )
-        db.session.add(new_bookshelf)
+      new_booklist = Booklist(
+        list_type='booklist',
+        comments=request.form['comments'],
+        rating=1,
+        review='',
+        user=user,
+        book=new_book
+      )
+      db.session.add(new_booklist)
+      # else: 
+      #   new_bookshelf = Booklist(
+      #     list_type='bookshelf',
+      #     comments='',
+      #     rating=request.form['rating'],
+      #     review=request.form['review'],
+      #     user=user,
+      #     book=new_book
+      #   )
+      #   db.session.add(new_bookshelf)
       db.session.commit()
       # test = db.session.query(Booklist).filter_by(user=user).filter_by(book=new_book)
       # from IPython import embed; embed()
