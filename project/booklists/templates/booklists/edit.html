@@ -5,6 +5,27 @@
   <div>{{ message }}</div>
 {% endfor %}
 
+<h1>Edit notes about {{ book.title }}</h1>
 
+<form action="{{ url_for('booklists.show', user_id=user.id, book_id=book.id) }}?_method=PATCH" method="POST">
+  {{ form.csrf_token }}
+  <p>
+    {{ form.comments(placeholder="comments") }}
+    <span class="text-danger">
+      {% if form.comments.errors %}
+        {% for error in form.comments.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <button type="submit align-right">Submit changes</button>
+</form>
+
+<form action="{{ url_for('booklists.show', user_id=user.id, book_id=book.id) }}?_method=DELETE" method="POST">
+  {{ form.csrf_token }}
+  <button type="submit">Remove book</button>
+
+</form>
 
 {% endblock %}

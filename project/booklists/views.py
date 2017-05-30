@@ -1,7 +1,7 @@
 from flask import redirect, render_template, request, url_for, Blueprint, flash
 from project.booklists.models import Book
 from project.users.models import User, Booklist
-from project.booklists.forms import BooklistForm
+from project.booklists.forms import BooklistForm, EditBooklistForm
 from project import db, bcrypt
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
@@ -85,23 +85,24 @@ def new(user_id):
 def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
-  user_book = db.session.query(Booklist).filter_by(user=user).filter_by(book=book).first()
-  form = BooklistForm(request.form)
+  booklist = db.session.query(Booklist).filter_by(user=user).filter_by(book=book).first()
+  form = EditBooklistForm(request.form)
   if request.method == b"PATCH":
     if form.validate():
       # make it so they can only update the comments OR move to their bookshelf!!!!!
-      book.comments = request.form('comments')
-      db.session.add(book)
+      booklist.comments = request.form['comments']
+      db.session.add(booklist)
       db.session.commit()
       flash("Book successfully updated")
       return redirect(url_for('booklists.index', user_id=user_id))
   if request.method == b"DELETE":
     if form.validate():
+      db.session.delete(booklist)
       db.session.delete(book)
       db.session.commit()
       flash("Book successfully removed from your booklist")
       return redirect(url_for('booklists.index', user_id=user_id))
-  return render_template('booklists/show.html', book=user_book, form=form, user=user)
+  return render_template('booklists/show.html', book=book, form=form, user=user)
 
 @booklists_blueprint.route('/<int:book_id>/edit')
 @login_required
@@ -110,5 +111,5 @@ def edit(user_id, book_id):
   # Need to think about how to let them move a book to their bookshelf!!!!!!
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
-  form = BooklistForm(request.form)
+  form = EditBooklistForm(request.form)
   return render_template('booklists/edit.html', book=book, form=form, user=user)

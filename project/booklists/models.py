@@ -28,4 +28,4 @@ class Book(db.Model, UserMixin):
         self.date_published = date_published
  
     def __repr__(self):
-        return "Book #{}: {} by {} - on {}".format(self.id, self.title, self.author, self.list_type)
+        return "Book #{}: {} by {}".format(self.id, self.title, self.author)

@@ -47,7 +47,7 @@
 
 * Monday - auth working, user routes set up, Heroku set up
 * Tuesday - book routes added, book search working
-* Wednesday - styling and testing - see photos here https://unsplash.com/search/books
+* Wednesday - styling, navbar and testing - see photos here https://unsplash.com/search/books
 * Thursday - readme, bonuses
 * Friday - bonuses, finish readme, final push to Github and Heroku
 

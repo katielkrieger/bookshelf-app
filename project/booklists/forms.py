@@ -17,3 +17,6 @@ class BooklistForm(FlaskForm):
     comments = StringField('comments', widget=TextArea())
     # rating = IntegerField('rating', validators=[NumberRange(min=1, max=10)])
     # review = StringField('review', widget=TextArea())
+
+class EditBooklistForm(FlaskForm):
+    comments = StringField('comments', widget=TextArea())
