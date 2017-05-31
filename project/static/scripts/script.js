@@ -93,7 +93,8 @@ $(document).ready(function(){
             $newDiv.append($list);
 
             var $thumb = $("<img>");
-            $thumb.attr("src", array[i].image_url);
+            $thumb.attr("src", array[i].image_url)
+                  .css("width","100%");
             $cover.append($thumb);
 
             var $title = $("<div>")
