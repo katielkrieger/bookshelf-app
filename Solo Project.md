@@ -22,6 +22,8 @@
 6. Add description of what app does on the home screen.
 7. Troubleshoot the extra rows on the "new" pages after search.
 8. Make landing page image reduced size - takes a while to load.
+9. Flash messages are acting strangely.
+10. Book covers too wide when screen is small.
 
 ## Basic features
 

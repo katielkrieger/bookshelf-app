@@ -6,11 +6,47 @@
 {% endfor %}
 
 
-<h1>{{ user.username }}'s Book
-</h1>
 
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+    {% if book.list_type == "bookshelf" %}
+      <h3>{{ book.book.title }}</h3>
+      <img src="{{ book.book.image_url }}">
+      <blockquote class="blockquote-reverse">
+        <p>
+          {{ book.review }}
+        </p>
+        <footer>
+          {{ user.username }}'s review ({{ book.rating }} out of 10)
+        </footer>
+      </blockquote>
+      <a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit review</span></a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h4>About this book</h4>
+      <div>
+        <strong>Author</strong>: {{ book.book.author }}
+      </div>
+      <div>
+        <strong>Pages</strong>: {{ book.book.pages }}
+      </div>
+      <div>
+        <strong>Date Published</strong>: {{ book.book.date_published }}
+      </div>
+      <div>
+        <strong>About</strong>: {{ book.book.description }}
+      </div>
+      <div>
+        <strong>Category</strong>: {{ book.book.categories }}
+      </div>
+      <div>
+        <strong>Excerpt</strong>: {{ book.book.snippet }}
+      </div>
+{% endif %}
 
-{% if book.list_type == "bookshelf" %}
+{# {% if book.list_type == "bookshelf" %}
 
   <img src="{{ book.book.image_url }}">
   {{ book.book.title }}: {{ book.rating }} out of 10
@@ -44,6 +80,6 @@
 
 <div>
   REMOTE BOOK FROM BOOKSHELF
-</div>
+</div> #}
 
 {% endblock %}

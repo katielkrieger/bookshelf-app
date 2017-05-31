@@ -6,48 +6,58 @@
 {% endfor %}
 
 
-<h1>{{ user.username }}'s Book
-</h1>
-
-{% if book.list_type == "booklist" %}
-  <img src="{{ book.book.image_url }}">
-  {{ book.book.title }}: {{ book.comments }}
-  <a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit comments</span></a>
-  <h3>About this book</h3>
-  <div>
-    Author: {{ book.book.author }}
+{# <h1>{{ user.username }}'s Book
+</h1> #}
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+    {% if book.list_type == "booklist" %}
+      <h3>{{ book.book.title }}</h3>
+      <img src="{{ book.book.image_url }}">
+      <blockquote class="blockquote-reverse">
+        <p>
+          {{ book.comments }}
+        </p>
+        <footer>
+          {{ user.username }}'s comments
+        </footer>
+      </blockquote>
+      <a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit comments</span></a>
   </div>
-  <div>
-    {{ book.book.pages }} pages
-  </div>
-  <div>
-    Published {{ book.book.date_published }}
-  </div>
-  <div>
-    About: {{ book.book.description }}
-  </div>
-  <div>
-    Excerpt: {{ book.book.snippet }}
-  </div>
-  <div>
-    Category: {{ book.book.categories }}
-  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h4>About this book</h4>
+      <div>
+        <strong>Author</strong>: {{ book.book.author }}
+      </div>
+      <div>
+        <strong>Pages</strong>: {{ book.book.pages }}
+      </div>
+      <div>
+        <strong>Date Published</strong>: {{ book.book.date_published }}
+      </div>
+      <div>
+        <strong>About</strong>: {{ book.book.description }}
+      </div>
+      <div>
+        <strong>Category</strong>: {{ book.book.categories }}
+      </div>
+      <div>
+        <strong>Excerpt</strong>: {{ book.book.snippet }}
+      </div>
 {% endif %}
 
 
+ 
 
-  
-  
-
-  <h4>
-    <button type="button" class="btn btn-default" aria-label="Left Align">
+  <h5>
+    <button type="button" class="btn btn-info" aria-label="Left Align">
       <span class="glyphicon glyphicon-ok glyphicon-large" aria-hidden="true"></span>
     </button>
-    Mark as read and move {{ book.title }} to your bookshelf
-  </h4>
-
-
-
+    <span>Mark as read</span>
+  </h5>
+ </div>
+</div>
 
     <section>
       <div class="row row-hidden">
@@ -85,7 +95,7 @@
                 </p>
               </div>
               <div class="col-xs-12">
-                <button type="submit align-right" class="btn btn-default search">Add to bookshelf</button>
+                <button type="submit align-right" class="btn btn-default search">Move to bookshelf</button>
               </div>
             </div>
           </form>
@@ -93,7 +103,7 @@
       </div>
     </section>
 
-
+   
 
 
 {% endblock %}

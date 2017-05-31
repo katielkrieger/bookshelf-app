@@ -1,5 +1,7 @@
 html, body {
-  height: 96.75%;
+  height: calc(100% - 42px);
+  height: -moz-calc(100% - 42px);
+  height: -webkit-calc(100% - 42px);
   margin: 0;
   padding: 0;
 }
@@ -9,10 +11,10 @@ html, body {
 }
 
 .home {
-  position: absolute;
+  /*position: absolute;*/
   max-width: 100%;
   max-height: 100%;
-  left: 0;
+  /*margin: 0 auto;*/
 }
 
 .main {
@@ -89,6 +91,24 @@ input[type="radio"]{
   margin-left: 1rem;
 }
 
+.glyphicon-ok {
+  font-size: 2rem;
+}
+
+.btn-glyph {
+  border: none;
+}
+
 .row-hidden {
   visibility: hidden;
 }
+
+.blockquote-reverse {
+  margin-top: 2rem;
+  background-color: lightgray;
+}
+
+.blockquote-reverse footer {
+  color: gray;
+}
+
