@@ -10,6 +10,8 @@ class ProductionConfig(Config):
 
 class DevelopmentConfig(Config):
     DEBUG = True
+    # ENV = "Development"
 
 class TestingConfig(Config):
     TESTING = True
+    SQLALCHEMY_ECHO = False

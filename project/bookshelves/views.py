@@ -1,8 +1,9 @@
 from flask import redirect, render_template, request, url_for, Blueprint, flash
+from flask_mail import Message
 from project.booklists.models import Book
 from project.users.models import User, Booklist
-from project.bookshelves.forms import BookshelfForm, EditBookshelfForm
-from project import db, bcrypt
+from project.bookshelves.forms import BookshelfForm, EditBookshelfForm, EmailForm
+from project import db, bcrypt, mail
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
 from functools import wraps
@@ -57,7 +58,7 @@ def index(user_id):
       return redirect(url_for('bookshelves.index', user_id=user_id))
     flash("Please try again")
     return render_template('bookshelves/new.html', form=form, user=user)
-  all_books = db.session.query(Booklist).filter_by(user=user).filter_by(list_type="bookshelf").all()
+  all_books = Booklist.query.filter_by(user=user).filter_by(list_type="bookshelf").all()
   return render_template('bookshelves/index.html', form=form, user=user, books=all_books)
 
 
@@ -75,7 +76,7 @@ def new(user_id):
 def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
-  bookshelf = db.session.query(Booklist).filter_by(user=user).filter_by(book=book).first()
+  bookshelf = Booklist.query.filter_by(user=user).filter_by(book=book).first()
   form = EditBookshelfForm(request.form)
   if request.method == b"PATCH":
     if form.validate():
@@ -104,3 +105,18 @@ def edit(user_id, book_id):
   user = User.query.get_or_404(user_id)
   form = EditBookshelfForm(request.form)
   return render_template('bookshelves/edit.html', book=book, form=form, user=user)
+
+@bookshelves_blueprint.route('/<int:book_id>/email',methods=["GET","POST"])
+@login_required
+@ensure_correct_user
+def email(user_id, book_id):
+  form = EmailForm(request.form)
+  book = Book.query.get_or_404(book_id)
+  user = User.query.get_or_404(user_id)
+  if form.validate_on_submit():
+    msg = Message("Testing",
+                sender=current_user.email,
+                recipients=[request.form['recipient']])
+    mail.send(msg)
+    return redirect(url_for('bookshelves.index'))
+  return render_template('bookshelves/email.html', form=form, book=book, user=user)

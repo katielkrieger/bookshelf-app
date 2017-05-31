@@ -85,7 +85,7 @@ section {
 }
 
 .form-hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .add-form {
@@ -167,7 +167,7 @@ input[type="radio"]{
 }
 
 .bottom-margin {
-  margin-bottom: 8rem;
+  margin-bottom: 16rem;
 }
 
 .users {

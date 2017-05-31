@@ -13,7 +13,7 @@ $(document).ready(function(){
   var array = [];
 
   $search.on("click", function(event){
-    console.log("clicked");
+    // console.log("clicked");
 
     var searchTitle = $('#searchTitle').val();
     var searchAuthor = $('#searchAuthor').val();
@@ -38,7 +38,7 @@ $(document).ready(function(){
       console.log(err);
       // throw err;
     }).then(function(response){
-      console.log(response);
+      // console.log(response);
       // show click instructions
       $click = $(".click");
       $click.css("visibility","visible");
@@ -49,6 +49,7 @@ $(document).ready(function(){
         var $oldBooks = $(".book");
         $oldBooks.remove();
         array = [{},{},{},{},{},{},{},{},{},{},];
+
         if(response !== undefined){
           for (var i=0; i<Math.min(response.items.length, 10); i++) {
 
@@ -104,20 +105,18 @@ $(document).ready(function(){
                   .css("width","100%");
             $cover.append($thumb);
 
-            var $title = $("<div>")
+            var $title = $("<h4>")
             $title.text(array[i].title + " by " + array[i].author)
               .addClass("newBook")
-              .css("font-size", "2.5rem")
-              .css("font-weight", "bold");
             $list.append($title)
 
             var $description = $("<div>");
             $description.text(array[i].description)
               .addClass("description")
-              .css("font-size", "1.75rem")
+              .css("font-size", "1.65rem")
               .css("font-weight", "normal")
-              .css("margin", "1rem");
-            $title.append($description);
+              .css("margin-top", "1rem");
+            $list.append($description);
 
           }
         } else {
@@ -129,13 +128,17 @@ $(document).ready(function(){
 
   // add event listener for selection of one of the books
 
-  $(".holder").on("click", "img", function(event){
-      console.log("book selected");
+  $(".holder").on("click", ".cover, .list", function(event){
 
-      $selectedBook = $(event.target).parent().parent()
+
+      $target = $(event.target);
+      if ($target.hasClass("cover") || $target.hasClass("list")) {
+        $selectedBook = $(event.target).parent();
+      } else {
+        $selectedBook = $(event.target).parent().parent();
+      }
 
       var i = parseInt($selectedBook.attr('data-info'));
-      console.log(array[i]);
 
       // var $title = $('input[name=title]');
       var $title = $('#title');
@@ -169,7 +172,7 @@ $(document).ready(function(){
 
       // show form-hidden
       $hiddenForm = $(".form-hidden");
-      $hiddenForm.css("visibility","visible")
+      $hiddenForm.css("display","block")
                  .appendTo($selectedBook);
 
       // unstyle any other books
@@ -182,6 +185,7 @@ $(document).ready(function(){
       // style book selected
       $selectedBook.css("borderStyle","solid")
                    .css("borderWidth",".5rem")
+                   .css("borderRadius","3rem")
                    .css("padding-top","1rem")
                    .css("padding-bottom","1rem");
 

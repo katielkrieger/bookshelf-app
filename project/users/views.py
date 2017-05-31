@@ -58,7 +58,7 @@ def login():
                 if authenticated_user:
                     login_user(found_user)
                     flash("Welcome {}!".format(found_user.username))
-                    return redirect(url_for('users.index'))
+                    return redirect(url_for('users.show', user_id=current_user.id))
             flash("Username and password do not match")
             return render_template('users/login.html', form=form)
     return render_template('users/login.html', form=form)
@@ -88,8 +88,8 @@ def show(user_id):
         db.session.delete(found_user)
         db.session.commit()
         return redirect(url_for('users.index'))
-    booklist = db.session.query(Booklist).filter_by(user=found_user).filter_by(list_type="booklist").all()
-    bookshelf = db.session.query(Booklist).filter_by(user=found_user).filter_by(list_type="bookshelf").all()
+    booklist = Booklist.query.filter_by(user=found_user).filter_by(list_type="booklist").all()
+    bookshelf = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
     return render_template('users/show.html', user=found_user, booklist=booklist, bookshelf=bookshelf)
 
 @users_blueprint.route('/<int:user_id>/edit')
