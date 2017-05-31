@@ -5,7 +5,7 @@ from wtforms.widgets import TextArea
 
 
 class BookshelfForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired()])
+    title = HiddenField()#StringField('title', validators=[DataRequired()])
     author = HiddenField()#StringField('author', validators=[DataRequired()])
     categories=HiddenField()#StringField('categories') 
     snippet=HiddenField()#StringField('snippet') 

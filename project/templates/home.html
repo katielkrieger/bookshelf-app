@@ -47,20 +47,14 @@
       </ul>
     </div>
   </nav>
-  {# <img src="{{ url_for('static', filename='images/home-cropped-top.jpg') }}" class="top-img">
- #}
 
-  {# <div class="container-fluid main"> #}
+  {% for message in get_flashed_messages() %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endfor %}
+
     <section>
       <img src="{{ url_for('static', filename='images/home.jpg') }}" class="home center-block">     
     </section>
-
-   {#  <footer>
-      <div class="row bottom text-center">
-        <img src="{{ url_for('static', filename='images/home-cropped.jpg') }}" class="bottom-img">
-      </div>
-    </footer> #}
-  {# </div> #}
     
 </body>
 </html>

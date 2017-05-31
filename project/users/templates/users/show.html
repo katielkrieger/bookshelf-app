@@ -5,39 +5,55 @@
   <div class="alert alert-info">{{ message }}</div>
 {% endfor %}
 
-<h2>About</h2>
+<h3>About {{ user.username }}</h3>
 
 
-<p>
-  Username: {{ user.username }}
-</p>
 
 <p>
-  Name: {{ user.name }}
-</p>
-
-<p>
-  {{ booklist|length }} book{% if booklist|length > 1 %}s{% endif %} on <a href="{{ url_for('booklists.index', user_id=user.id) }}">{{ user.username }}'s booklist</a>
-</p>
-
-<p>
-  {{ bookshelf|length }} book{% if bookshelf|length > 1 %}s{% endif %} on <a href="{{ url_for('bookshelves.index', user_id=user.id) }}">{{ user.username }}'s bookshelf</a>
+  <strong>{{ user.name }}</strong>
 </p>
 
 
+<div class="container">
+  <div class="row text-center">
+    <div class="col-xs-12 col-sm-6">
+      <h2>
+        <a href="{{ url_for('booklists.index', user_id=user.id) }}" class="btn btn-large btn-info">
+          <div class="glyphicon glyphicon-th-list"><strong> Booklist</strong></div>
+        </a>
+      </h2>
+      <div class="bottom-margin">
+        <small>({{ booklist|length }} book{% if booklist|length > 1 %}s{% endif %})</small>
+      </div>
+      
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h2>
+        <a href="{{ url_for('bookshelves.index', user_id=user.id) }}" class="btn btn-large btn-info">
+          <div class="glyphicon glyphicon-book"><strong> Bookshelf</strong></div>
+        </a>
+      </h2>
+      <div class="bottom-margin">
+        <small>({{ bookshelf|length }} book{% if bookshelf|length > 1 %}s{% endif %})</small>
+      </div>
+        
+    </div>
+  </div>
+</div>
 
 
-<h3>More options</h3>
 
-<p>
+<hr class="hr">
+
+<h5>More options</h5>
+
+<div>
   <a href="{{ url_for('users.edit', user_id=user.id) }}">Edit account settings</a>
-</p>
+</div>
 
-<p>
+<div>
   <a href="{{ url_for('users.edit_password', user_id=user.id) }}">Change password</a>
-</p>
-
-
+</div>
 
 
 {% endblock %}

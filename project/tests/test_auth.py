@@ -36,7 +36,7 @@ class TestUser(TestCase):
             response = self.client.post('/users/signup', data=dict(
                 username='tigarcia',password='moxies',name="Tim",email="tim@tim.com"
             ), follow_redirects=True)
-            self.assertIn(b'Welcome!', response.data)
+            self.assertIn(b'Welcome', response.data)
             self.assertTrue(current_user.username == "tigarcia")
             # make sure we hash the password!
             self.assertNotEqual(current_user.password, "moxies")

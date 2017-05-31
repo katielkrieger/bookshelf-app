@@ -5,11 +5,13 @@
   <div class="alert alert-info">{{ message }}</div>
 {% endfor %}
 
+
+<h3>Check out what other people are reading</h3>
 {% for user in users %}
 
-  <p>
+  <h5 class="users">
     <a href="{{ url_for('users.show', user_id=user.id)}}" >{{user.username}}</a>
-  </p>
+  </h5>
 
 {% endfor %}
 

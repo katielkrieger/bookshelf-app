@@ -58,7 +58,7 @@ def index(user_id):
       return redirect(url_for('booklists.index', user_id=user_id))
     flash("Please try again")
     return render_template('booklists/new.html', form=form, user=user)
-  all_books = db.session.query(Booklist).filter_by(user=user).all()
+  all_books = db.session.query(Booklist).filter_by(user=user).filter_by(list_type="booklist").all()
   return render_template('booklists/index.html', form=form, user=user, books=all_books)
 
 

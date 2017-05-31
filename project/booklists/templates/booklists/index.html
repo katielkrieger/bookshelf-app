@@ -5,18 +5,19 @@
   <div class="alert alert-info">{{ message }}</div>
 {% endfor %}
 
-<h1>{{ user.username }}'s Booklist
-</h1>
+<h2 class="text-center">{{ user.username }}'s Booklist
+</h2>
 
 
-{% for book in books %}
-  {% if book.list_type == "booklist" %}
-    <p>
-      <a href="{{ url_for('booklists.show', user_id=user.id, book_id=book.book.id) }}"><img src="{{ book.book.image_url }}"></a>
-      {{ book.book.title }}: {{ book.comments }}
-    </p>
-  {% endif %}
-{% endfor %}
+<div class="row books">
+  {% for book in books %}
+    
+      <div class="col-xs-12 col-sm-3 col-sm-offset-1 form-group">
+        <a href="{{ url_for('booklists.show', user_id=user.id, book_id=book.book.id) }}"><img src="{{ book.book.image_url }}"></a>
+      </div>
+
+  {% endfor %}
+</div>
 
 
 {% endblock %}

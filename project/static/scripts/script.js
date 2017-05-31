@@ -183,7 +183,7 @@ $(document).ready(function(){
 
   // add an event listener to mark a book as read
 
-  $markRead = $(".glyphicon-ok");
+  $markRead = $(".btn-info");
   $hiddenForm = $(".row-hidden");
   $hiddenForm.slideUp();
 
