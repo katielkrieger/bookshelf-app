@@ -32,6 +32,9 @@ $(document).ready(function(){
       // throw err;
     }).then(function(response){
       console.log(response);
+      // show click instructions
+      $click = $(".click");
+      $click.css("visibility","visible");
 
         var $holder = $(".holder")
 
@@ -76,7 +79,7 @@ $(document).ready(function(){
             var $newDiv = $("<div>");
             $newDiv.addClass("row book")
                    .attr("data-info","" + i + "")
-                   .css("margin-bottom", "2rem");
+                   .css("margin-bottom", "3rem");
             $holder.append($newDiv);
 
             // make a div with class="col-xs-2 cover" inside of newDiv
@@ -103,9 +106,9 @@ $(document).ready(function(){
             var $description = $("<div>");
             $description.text(array[i].description)
               .addClass("description")
-              .css("font-size", "2rem")
+              .css("font-size", "1.75rem")
               .css("font-weight", "normal")
-              .css("margin", "2rem");
+              .css("margin", "1rem");
             $title.append($description);
 
           }
@@ -174,6 +177,20 @@ $(document).ready(function(){
                    .css("padding-top","1rem")
                    .css("padding-bottom","1rem");
 
+
+  });
+
+
+  // add an event listener to mark a book as read
+
+  $markRead = $(".glyphicon-ok");
+  $hiddenForm = $(".row-hidden");
+  $hiddenForm.slideUp();
+
+  $markRead.on("click", function(event){
+
+    $hiddenForm.css("visibility","visible")
+               .slideToggle();
 
   });
 

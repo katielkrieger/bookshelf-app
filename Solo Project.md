@@ -19,7 +19,9 @@
 1. Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.
 3. On Heroku, signup says "Username has been taken" even for new usernames.
 4. Make it so user can click on title or description, in addition to book cover, to select a book.
-5. Rating/review is not centered when description is longer than cover.
+6. Add description of what app does on the home screen.
+7. Troubleshoot the extra rows on the "new" pages after search.
+8. Make landing page image reduced size - takes a while to load.
 
 ## Basic features
 

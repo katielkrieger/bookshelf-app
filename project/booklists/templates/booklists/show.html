@@ -12,7 +12,8 @@
 {% if book.list_type == "booklist" %}
   <img src="{{ book.book.image_url }}">
   {{ book.book.title }}: {{ book.comments }}
-  <div>About this book</div>
+  <a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit comments</span></a>
+  <h3>About this book</h3>
   <div>
     Author: {{ book.book.author }}
   </div>
@@ -34,41 +35,63 @@
 {% endif %}
 
 
-<h2>Other options</h2>
+
+  
+  
+
+  <h4>
+    <button type="button" class="btn btn-default" aria-label="Left Align">
+      <span class="glyphicon glyphicon-ok glyphicon-large" aria-hidden="true"></span>
+    </button>
+    Mark as read and move {{ book.title }} to your bookshelf
+  </h4>
 
 
-<h3>
-  Make changes
-</h3>
-<div><a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}">Edit comments or delete book</a></div>
 
-<h3>Move {{ book.title }} to your bookshelf</h3>
 
-<form action="{{ url_for('bookshelves.show', user_id=user.id, book_id=book.book.id) }}?_method=PATCH" method="POST">
-  {{ form.csrf_token }}
-  <p>
-    {{ form.rating(placeholder="rating") }}
-    <span class="text-danger">
-      {% if form.rating.errors %}
-        {% for error in form.rating.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-  <p>
-    {{ form.review(placeholder="review") }}
-    <span class="text-danger">
-      {% if form.review.errors %}
-        {% for error in form.review.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-  <button type="submit align-right">Submit review</button>
-</form>
+    <section>
+      <div class="row row-hidden">
+        <div class="text-center">
+          <form class="form" action="{{ url_for('bookshelves.show', user_id=user.id, book_id=book.book.id) }}?_method=PATCH" method="POST">
+            <div class="form-group">
+              <div class="col-xs-10 col-xs-offset-1 text-center add-form">
+            
+                {{ form.csrf_token }}
 
+                 <p class="rating">rating
+                  {% for subfield in form.rating %}
+                      <tr>
+                          <td>{{ subfield(class="radio-inline") }}</td>
+                          <td>{{ subfield.label }}</td>
+                      </tr>
+                  {% endfor %}
+                  <span class="text-danger">
+                    {% if form.rating.errors %}
+                      {% for error in form.rating.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    {% endif %}
+                  </span>
+                </p>
+                <p>
+                  {{ form.review(placeholder="review", class="form-control") }}
+                  <span class="text-danger">
+                    {% if form.review.errors %}
+                      {% for error in form.review.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    {% endif %}
+                  </span>
+                </p>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit align-right" class="btn btn-default search">Add to bookshelf</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
 
 

@@ -7,6 +7,106 @@
 
   <div class="container">
     <section class="top container">
+      <h2 class="header text-center">Search for a Book
+      </h2>
+     {#  <h2 class="header text-center">Optionlly Include Author
+      </h2> #}
+    </section>
+    <section class="top container">
+      <div class="row">
+        <form class="form" action="javascript:void(0)">
+          <div class="form-group">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+              <label class="sr-only" for="title">Title (required)</label>
+              <input type="text" class="form-control" id="searchTitle" placeholder="Title (required)">
+              <label class="sr-only" for="author">Author (optional)</label>
+              <input type="text" class="form-control" id="searchAuthor" placeholder="Author (optional)">
+            </div>
+          </div>
+          <div class="col-xs-12 text-center">
+            <button type="submit" class="btn btn-default search">Search
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center click">
+          <h4>Click on a book cover to select it</h4>
+        </div>
+      </div>
+    <hr class="click">
+    </section>
+    <section class="container">
+      <div class="row bookshelf">
+        <div class="col-xs-10 col-xs-offset-1 holder">
+          <div class="row holder">
+            <div class="col-xs-2 cover"></div>
+            <div class="col-xs-10 list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="row">
+        <div class="form-hidden text-center">
+          <form class="form" action="{{ url_for('booklists.index', user_id=user.id) }}" method="POST">
+            <div class="form-group">
+              <div class="col-xs-10 col-xs-offset-1 text-center add-form">
+            
+                {{ form.csrf_token }}
+                {{ form.title(placeholder="title") }}
+                {{ form.author(placeholder="author") }}
+                {{ form.categories(placeholder="categories") }}
+                {{ form.snippet(placeholder="snippet") }}
+                {{ form.description(placeholder="description") }}
+                {{ form.pages(placeholder="pages") }}
+                {{ form.image_url(placeholder="image url") }}
+                {{ form.preview_url(placeholder="preview url") }}
+                {{ form.date_published(placeholder="date published") }}
+
+                
+                <p>
+                  {{ form.comments(placeholder="comments", class="form-control") }}
+                  <span class="text-danger">
+                    {% if form.comments.errors %}
+                      {% for error in form.comments.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    {% endif %}
+                  </span>
+                </p>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit align-right" class="btn btn-default search">Add to booklist</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+{# {% extends 'base.html' %}
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+  <div class="alert alert-info">{{ message }}</div>
+{% endfor %}
+
+  <div class="container">
+    <section class="top container">
       <h1 class="header text-center">Search for a Book
       </h1>
       <h2 class="header text-center">By Title or Author
@@ -154,4 +254,4 @@
       </div>
     </section>
 
-{% endblock %}
+{% endblock %} #}

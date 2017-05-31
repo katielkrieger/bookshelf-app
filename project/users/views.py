@@ -1,5 +1,5 @@
 from flask import redirect, render_template, request, url_for, Blueprint, flash
-from project.users.models import User
+from project.users.models import User, Booklist
 from project.users.forms import UserForm, UpdateForm, LogInForm, UpdatePasswordForm
 from project import db, bcrypt
 from sqlalchemy.exc import IntegrityError
@@ -40,7 +40,7 @@ def signup():
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user)
-                flash("Welcome!")
+                flash("Welcome {}!".format(new_user.username))
                 return redirect(url_for('users.index'))
             except IntegrityError as e:
                 flash("Username has been taken")
@@ -57,7 +57,7 @@ def login():
                 authenticated_user = bcrypt.check_password_hash(found_user.password, request.form['password'])
                 if authenticated_user:
                     login_user(found_user)
-                    flash("Welcome!")
+                    flash("Welcome {}!".format(found_user.username))
                     return redirect(url_for('users.index'))
             flash("Username and password do not match")
             return render_template('users/login.html', form=form)
@@ -68,7 +68,7 @@ def login():
 def logout():
     flash ("You are now logged out")
     logout_user()
-    return redirect(url_for('users.login'))
+    return redirect(url_for('root'))
 
 @users_blueprint.route('/<int:user_id>', methods=["GET","PATCH","DELETE"])
 @login_required
@@ -88,7 +88,9 @@ def show(user_id):
         db.session.delete(found_user)
         db.session.commit()
         return redirect(url_for('users.index'))
-    return render_template('users/show.html', user=found_user)
+    booklist = db.session.query(Booklist).filter_by(user=found_user).filter_by(list_type="booklist").all()
+    bookshelf = db.session.query(Booklist).filter_by(user=found_user).filter_by(list_type="bookshelf").all()
+    return render_template('users/show.html', user=found_user, booklist=booklist, bookshelf=bookshelf)
 
 @users_blueprint.route('/<int:user_id>/edit')
 @login_required
