@@ -24,12 +24,18 @@
             <h2><strong> Booklist</strong></h2>
           </div>
         </a>
+            <h6>
+              (Books you want to read)
+            </h6>
       </div>
-      <div class="bottom-margin">
-        <small>({{ booklist|length }} book{% if booklist|length > 1 %}s{% endif %})</small>
-      </div>
+
       
+      <div class="bottom-margin">
+        <small>({{ booklist|length }} book{% if booklist|length != 1 %}s{% endif %})</small>
+      </div>
     </div>
+      
+
     <div class="col-xs-12 col-sm-6">
 
       <div class="shelf-photo-holder">
@@ -39,9 +45,12 @@
             <h2><strong> Bookshelf</strong></h2>
           </div>
         </a>
+            <h6>
+              (Books you've finished)
+            </h6>
       </div>
       <div class="bottom-margin">
-        <small>({{ bookshelf|length }} book{% if bookshelf|length > 1 %}s{% endif %})</small>
+        <small>({{ bookshelf|length }} book{% if bookshelf|length != 1 %}s{% endif %})</small>
       </div>
         
     </div>
