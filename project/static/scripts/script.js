@@ -1,5 +1,12 @@
 $(document).ready(function(){
 
+  // initiliaze carousel
+  $('.carousel').slick({
+    "arrows": true,
+    "dots": true,
+    "infinite": false
+  });
+
 
   // add event listener for search button
   var $search = $(".search");
@@ -70,7 +77,7 @@ $(document).ready(function(){
               array[i].date_published = "None found";
             }
             if (response.items[i].searchInfo) {
-              array[i].snippet = response.items[i].searchInfo.snippet || "None found";
+              array[i].snippet = response.items[i].searchInfo.textSnippet || "None found";
             } else {
               array[i].snippet = "None found";
             }

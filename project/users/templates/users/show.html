@@ -17,22 +17,29 @@
 <div class="container">
   <div class="row text-center">
     <div class="col-xs-12 col-sm-6">
-      <h2>
-        <a href="{{ url_for('booklists.index', user_id=user.id) }}" class="btn btn-large btn-info">
-          <div class="glyphicon glyphicon-th-list"><strong> Booklist</strong></div>
+      <div class="shelf-photo-holder">
+        <a href="{{ url_for('booklists.index', user_id=user.id) }}">
+          <img src="{{ url_for('static', filename='images/booklist.jpg') }}">
+          <div>
+            <h2><strong> Booklist</strong></h2>
+          </div>
         </a>
-      </h2>
+      </div>
       <div class="bottom-margin">
         <small>({{ booklist|length }} book{% if booklist|length > 1 %}s{% endif %})</small>
       </div>
       
     </div>
     <div class="col-xs-12 col-sm-6">
-      <h2>
-        <a href="{{ url_for('bookshelves.index', user_id=user.id) }}" class="btn btn-large btn-info">
-          <div class="glyphicon glyphicon-book"><strong> Bookshelf</strong></div>
+
+      <div class="shelf-photo-holder">
+        <a href="{{ url_for('bookshelves.index', user_id=user.id) }}">
+          <img src="{{ url_for('static', filename='images/bookshelf.jpg') }}">
+          <div>
+            <h2><strong> Bookshelf</strong></h2>
+          </div>
         </a>
-      </h2>
+      </div>
       <div class="bottom-margin">
         <small>({{ bookshelf|length }} book{% if bookshelf|length > 1 %}s{% endif %})</small>
       </div>

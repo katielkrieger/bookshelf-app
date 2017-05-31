@@ -1,0 +1,179 @@
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Abril Fatface';
+}
+
+.navbar span {
+  font-family: 'Abril Fatface';
+}
+
+.carousel {
+  /*padding-bottom: 70%;*/
+}
+
+html, body {
+  height: calc(100% - 42px);
+  height: -moz-calc(100% - 42px);
+  height: -webkit-calc(100% - 42px);
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  background: url('../images/home.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.alert {
+  color: black;
+}
+
+.home {
+  /*position: absolute;*/
+  max-width: 100%;
+  max-height: 100%;
+  /*margin: 0 auto;*/
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  margin-top: 0px;
+}
+
+section {
+  flex: 1;
+}
+/*
+.bottom {
+  margin-top: 2rem;
+  padding: 1.5rem 0rem 0rem 0rem;
+}*/
+
+/*.bottom-img, .top-img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.top-img {
+  margin-top: -22px;
+}*/
+
+.navbar-color {
+  background-image: url('../images/home-cropped-top.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.yellow {
+  color: #FFDD35;
+  font-family: 'Abril Fatface', cursive;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
+}
+
+/*.navbar span, .navbar-default .navbar-nav>li>a {
+  color: white;
+}*/
+
+/*.login {
+  margin-top: 10%;
+  font-size: 2rem;
+}
+
+.delete {
+  margin-top: 2rem;
+}*/
+
+/*.form-hidden {
+  visibility: hidden;
+}
+
+.add-form {
+  margin-top: 2rem;
+}
+
+.search {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+input[type="radio"]{
+  margin: 0 0 0 10px;
+}
+
+.rating {
+  color: #ACB2BA;
+  font-size: 16px;
+}
+
+.click {
+  visibility: hidden;
+}
+
+.glyphicon-edit {
+  margin-left: 1rem;
+}
+
+.glyphicon-ok {
+  font-size: 2rem;
+}
+
+
+.row-hidden {
+  visibility: hidden;
+}
+
+.blockquote-reverse {
+  margin-top: 2rem;
+  background-color: #B4D6DE;
+}
+
+.blockquote-reverse footer {
+  color: gray;
+}
+
+.books {
+  margin-bottom: 2rem;
+  max-height: 100%;
+}
+
+.book-cover {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.cover-grid {
+  height: 200px;
+}
+
+.cover-grid img {
+  max-height: 200px;
+}
+
+.btn-large {
+  font-size: 1.7rem;
+  border-radius: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-top: 8rem;
+}
+
+.bottom-margin {
+  margin-bottom: 8rem;
+}
+
+.users {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+*/

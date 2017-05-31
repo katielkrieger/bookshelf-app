@@ -1,9 +1,28 @@
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Abril Fatface';
+}
+
+.navbar span {
+  font-family: 'Abril Fatface';
+}
+
+
+/*h1, h2, h3, h4, h5, h6, p, div, span, a {
+  font-family: 'Abril Fatface';
+}*/
+
 html, body {
   height: calc(100% - 42px);
   height: -moz-calc(100% - 42px);
   height: -webkit-calc(100% - 42px);
   margin: 0;
   padding: 0;
+}
+
+.background {
+  background: url('../images/home.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
 .alert {
@@ -42,15 +61,19 @@ section {
   margin-top: -22px;
 }
 
-.navbar {
+.navbar-color {
   background-image: url('../images/home-cropped-top.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
-.navbar span, .navbar-default, .navbar-default .navbar-nav>li>a {
+.navbar span, .navbar-default .navbar-nav>li>a {
   color: white;
 }
+/*
+.white {
+  color: white;
+}*/
 
 .login {
   margin-top: 10%;
@@ -150,4 +173,13 @@ input[type="radio"]{
 .users {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.shelf-photo-holder img {
+  max-height: 36rem;
+}
+
+.shelf-photo-holder {
+  margin-top: 5rem;
+  height: 36rem;
 }

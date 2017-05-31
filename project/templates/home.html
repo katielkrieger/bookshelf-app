@@ -21,9 +21,18 @@
 
     <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style-home.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick.css') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick-theme.css') }}"/>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='slick/slick.min.js') }}"></script>
+
 </head>
-<body>
+<body class="background">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -52,9 +61,45 @@
     <div class="alert alert-info">{{ message }}</div>
   {% endfor %}
 
-    <section>
-      <img src="{{ url_for('static', filename='images/home.jpg') }}" class="home center-block">     
-    </section>
+ {#  <section class="container">
+    <h1 class="yellow">
+      <div>Never find yourself</div>
+      <div>without a good book again</div>
+    </h1>     
+  </section> #}
+
+  <div class="carousel container">
+    <div>
+      <h1 class="yellow">
+        <div>Never find yourself</div>
+        <div>without a good book again</div>
+      </h1>  
+    </div>
+    <div>
+      <h1 class="yellow">
+        <div>See what others</div>
+        <div>are reading</div>
+      </h1>
+    </div>
+    <div>
+      <h1 class="yellow">
+        <div>Keep track of books</div>
+        <div>you want to read</div>
+      </h1>
+    </div>
+    <div>
+      <h1 class="yellow">
+        <div>Write your own reviews</div>
+        <div>to share with others</div>
+      </h1>
+    </div>
+    <div>
+      <h1 class="yellow">
+        <div>Sign up today</div>
+        <div>to try it for yourself</div>
+      </h1>
+    </div>
+  </div>
     
 </body>
 </html>
