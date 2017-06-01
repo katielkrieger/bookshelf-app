@@ -122,10 +122,16 @@ def email(user_id, book_id):
   form = EmailForm(request.form)
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
+  bookshelf = Booklist.query.filter_by(user=user).filter_by(book=book).first()
+  recipients = request.form['recipient'].split(',')
+
   if form.validate_on_submit():
-    msg = Message("Testing",
-                sender=current_user.email,
-                recipients=[request.form['recipient']])
+    msg = Message("Here's a book I thought you might like",
+                sender=(current_user.name,current_user.email),
+                recipients=recipients)
+    msg.body = render_template('bookshelves/email.html', user=user, book=bookshelf)
+    msg.html = render_template('bookshelves/email.html', user=user, book=bookshelf)
     mail.send(msg)
     return redirect(url_for('bookshelves.index', user_id=user.id))
-  # return render_template('bookshelves/email.html', form=form, book=book, user=user)
+  flash("Invalid email address. Please try again.")
+  return render_template('bookshelves/show.html', form=form, book=bookshelf, user=user)

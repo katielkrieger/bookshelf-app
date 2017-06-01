@@ -1,42 +1,87 @@
-{# {% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommendation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-{% for message in get_flashed_messages() %}
-  <div class="alert alert-info">{{ message }}</div>
-{% endfor %}
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+    <style>
+  
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Abril Fatface';
+      }
+
+      .blockquote-reverse {
+        margin-top: 2rem;
+        background-color: #B4D6DE;
+      }
+
+      .blockquote-reverse footer {
+        color: gray;
+      }
+
+    </style>
+
+</head>
+<body>
+  <section>
+
+    <p>
+      Hello,
+    </p>
+    <p>
+      I thought you might like this book.
+    </p>
+
+    <h3>{{ book.book.title }}</h3>
+    <img src="{{ book.book.image_url }}">
+    <blockquote class="blockquote-reverse">
+      <p>
+        {{ book.review }}
+      </p>
+      <p>
+        {{ user.username }}'s review ({{ book.rating }} out of 10)
+      </p>
+    </blockquote>
+      
+    <h3>About this book</h3>
+    <div>
+      <strong>Author</strong>: {{ book.book.author }}
+    </div>
+    <div>
+      <strong>Pages</strong>: {{ book.book.pages }}
+    </div>
+    <div>
+      <strong>Date Published</strong>: {{ book.book.date_published }}
+    </div>
+    <div>
+      <strong>About</strong>: {{ book.book.description }}
+    </div>
+    <div>
+      <strong>Category</strong>: {{ book.book.categories }}
+    </div>
+     
+  </section>
 
 
-<div class="row text-center login">
-  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <h3>Tell a friend about {{ book.title }}</h3>
-    <section>
-      <div class="row">
-        <div class="text-center">
-          <form action="{{ url_for('bookshelves.email', user_id=user.id, book_id=book.id) }}" method="POST">
-            <div class="form-group">
-              <div class="col-xs-10 col-xs-offset-1 text-center add-form">
-            
-                {{ form.csrf_token }}
+  <br>
+  <br>
 
-                <p>
-                  {{ form.recipient(placeholder="recipient", class="form-control") }}
-                  <span class="text-danger">
-                    {% if form.recipient.errors %}
-                      {% for error in form.recipient.errors %}
-                        {{ error }}
-                      {% endfor %}
-                    {% endif %}
-                  </span>
-                </p>
-              </div>
-              <div class="col-xs-12">
-                <button type="submit align-right" class="btn btn-default search">Send email</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+  <footer>
+    <p>
+      Brought to you my <a href="https://my-bookshelves.herokuapp.com">My Bookshelves</a>.
+    </p>
+    <div>
+      <img src="http://imgur.com/I72VCwf.jpg">
+    </div>
+  </footer>
 
 
-{% endblock %} #}
+    
+
+  </div>
+    
+</body>
+</html>
