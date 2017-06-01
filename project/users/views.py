@@ -22,8 +22,11 @@ def ensure_correct_user(fn):
     return wrapper
 
 @users_blueprint.route('/')
+@login_required
 def index():
-    bookshelves = Booklist.query.filter_by(list_type="bookshelf").all()
+    following = current_user.all_following
+    following_ids = [f.id for f in following]
+    bookshelves = Booklist.query.filter(Booklist.user_id.in_(following_ids)).order_by("rating desc").limit(120).all()
     return render_template('users/index.html', books=bookshelves)
 
 @users_blueprint.route('/signup', methods=["GET", "POST"])

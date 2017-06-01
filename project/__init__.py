@@ -15,7 +15,7 @@ else:
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'postgres://localhost/solo-project'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_ECHO'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or "who knows"
 app.jinja_env.auto_reload = True
@@ -34,7 +34,7 @@ app.register_blueprint(users_blueprint, url_prefix='/users')
 app.register_blueprint(booklists_blueprint, url_prefix='/users/<int:user_id>/booklists')
 app.register_blueprint(bookshelves_blueprint, url_prefix='/users/<int:user_id>/bookshelves')
 
-from project.users.models import User
+from project.users.models import User, Booklist
 
 login_manager.init_app(app)
 login_manager.login_view = "users.login"
@@ -48,5 +48,8 @@ def root():
     if current_user.is_anonymous:
         return render_template('home.html')
     else:
-        return redirect(url_for('users.index'))
+        following = current_user.all_following
+        following_ids = [f.id for f in following]
+        bookshelves = Booklist.query.filter(Booklist.user_id.in_(following_ids)).order_by("rating desc").limit(120).all()
+        return redirect(url_for('users.index', books=bookshelves))
 
