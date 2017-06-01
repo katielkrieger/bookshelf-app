@@ -7,11 +7,19 @@
 
 <h3 class="text-center">{{ user.username }}</h3>
 
-
-
 <p class="text-center">
   <strong>{{ user.name }}</strong>
 </p>
+
+<div class="text-center">
+    <span>
+      <a href="{{ url_for('users.followers', user_id=user.id) }}"><span>Followers</span></a>
+    </span>
+    <span> | </span>
+    <span>
+      <a href="{{ url_for('users.following', user_id=user.id) }}"><span>Following</span></a>
+    </span>
+</div>
 
 
 

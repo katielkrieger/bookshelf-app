@@ -6,6 +6,30 @@
   <div class="alert alert-info">{{ message }}</div>
 {% endfor %}
 
+<h2 class="text-center">Following
+</h2>
+
+<h4 class="text-center">Check out who {% if current_user.id == user.id %}you are{% else %}{{ user.username }} is{% endif %} following 
+</h4>
+
+<div class="col-xs-10 col-xs-offset-1 text-center">
+    <a href="{{ url_for('users.followers', user_id=user.id) }}"><span>Followers </span><span class="glyphicon glyphicon-arrow-right glyphicon-large"></span></a>
+</div>
+
+
+  <div class="row books text-center">
+
+    {% for following in user.all_following %}
+      <div class="col-xs-12 col-sm-2 form-group">
+        <div class="cover-grid">
+          {# <span class="helper"></span> #}
+          <a href="{{ url_for('users.show', user_id=following.id) }}"><h5>{{ following.username }}</h5>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+
+  </div> 
 
 
 
