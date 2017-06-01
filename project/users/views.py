@@ -122,4 +122,24 @@ def edit_password(user_id):
     form = UpdatePasswordForm()
     return render_template('users/edit_password.html', form=form, user=found_user)
 
+@users_blueprint.route('/<int:follower_id>/follower', methods=['POST', 'DELETE'])
+@login_required
+def follower(follower_id):
+  followed = User.query.get(follower_id)
+  if request.method == 'POST':
+    current_user.following.append(followed)
+  else:
+    current_user.following.remove(followed)
+  db.session.add(current_user)
+  db.session.commit()
+  return redirect(url_for('users.following', id=current_user.id))
 
+@users_blueprint.route('/<int:user_id>/following', methods=['GET'])
+@login_required
+def following(user_id):
+  return render_template('users/following.html', user=User.query.get(user_id))
+
+@users_blueprint.route('/<int:user_id>/followers', methods=['GET'])
+@login_required
+def followers(user_id):
+  return render_template('users/followers.html', user=User.query.get(user_id))
