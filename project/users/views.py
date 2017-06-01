@@ -132,7 +132,7 @@ def follower(follower_id):
     current_user.following.remove(followed)
   db.session.add(current_user)
   db.session.commit()
-  return redirect(url_for('users.following', id=current_user.id))
+  return redirect(url_for('users.following', user_id=current_user.id))
 
 @users_blueprint.route('/<int:user_id>/following', methods=['GET'])
 @login_required

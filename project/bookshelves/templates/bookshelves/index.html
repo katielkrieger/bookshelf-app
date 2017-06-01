@@ -12,11 +12,11 @@
   <div class="row books text-center">
     {% for book in books %}
       
-      <div class="col-xs-12 col-sm-3 col-sm-offset-1 form-group">
+      <div class="col-xs-12 col-sm-3 form-group">
         <div class="cover-grid">
           <a href="{{ url_for('bookshelves.show', user_id=user.id, book_id=book.book.id) }}">
             <span class="helper"></span>
-            <img src="{{ book.book.image_url }}">
+            <img class="border" src="{{ book.book.image_url }}">
           </a>
         </div>
         <div>

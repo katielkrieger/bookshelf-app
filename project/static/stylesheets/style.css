@@ -135,6 +135,7 @@ input[type="radio"]{
 .books {
   margin-bottom: 2rem;
   max-height: 100%;
+  margin-top: 5rem;
 }
 
 .book-cover {
@@ -187,3 +188,10 @@ input[type="radio"]{
   margin-top: 5rem;
   height: 36rem;
 }
+
+.border:hover {
+  border: gray;
+  border-width: 1rem;
+  border-style: solid;
+}
+
