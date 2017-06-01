@@ -11,6 +11,7 @@ $(document).ready(function(){
   // add event listener for search button
   var $search = $(".search");
   var array = [];
+  var nyt_review_url = "None found";
 
   $search.on("click", function(event){
     // console.log("clicked");
@@ -138,9 +139,13 @@ $(document).ready(function(){
     }).done(function(result) {
       console.log(result);
     }).fail(function(err) {
-      throw err;
+      // throw err;
     }).then(function(response){
-      var nyt_review_url = response.results[0].url;
+      if (response) {
+        if(response.results) {
+          nyt_review_url = response.results[0].url || "None found";
+        }
+      }
 
     });  
 
@@ -191,6 +196,7 @@ $(document).ready(function(){
       $preview_url.val(array[i].preview_url);
       $date_published.val(array[i].date_published);
       $nyt_review_url.val(nyt_review_url);
+      debugger
 
       // show form-hidden
       $hiddenForm = $(".form-hidden");

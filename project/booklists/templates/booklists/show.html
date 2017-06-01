@@ -44,7 +44,8 @@
         <strong>Category</strong>: {{ book.book.categories }}
       </div>
       <div>
-        <strong>New York Times Review</strong>: {{ book.book.nyt_review_url }}
+      <div>
+        {% if book.book.nyt_review_url != "None found" and book.book.nyt_review_url != None %}<strong>Published Review</strong>: <a href="{{ book.book.nyt_review_url }}">New York Times book review</a>{% endif %}
       </div>
       {# <div>
         <strong>Excerpt</strong>: {{ book.book.snippet }}
