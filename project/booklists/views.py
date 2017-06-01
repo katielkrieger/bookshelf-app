@@ -70,9 +70,9 @@ def new(user_id):
   user = User.query.get_or_404(user_id)
   return render_template('booklists/new.html', form=form, user=user)
 
-@booklists_blueprint.route('/<int:book_id>', methods=["GET","PATCH","DELETE"])
+@booklists_blueprint.route('/<int:book_id>', methods=["PATCH","DELETE"])
 @login_required
-# @ensure_correct_user
+@ensure_correct_user
 def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
@@ -94,6 +94,14 @@ def show(user_id, book_id):
       db.session.commit()
       flash("Book successfully removed from your booklist")
       return redirect(url_for('booklists.index', user_id=user_id))
+
+@booklists_blueprint.route('/<int:book_id>', methods=["GET"])
+@login_required
+# @ensure_correct_user
+def show_get(user_id, book_id):
+  book = Book.query.get_or_404(book_id)
+  user = User.query.get_or_404(user_id)
+  booklist = Booklist.query.filter_by(user=user).filter_by(book=book).first()
   form = EditBookshelfForm(request.form)
   return render_template('booklists/show.html', book=booklist, form=form, user=user)
 
