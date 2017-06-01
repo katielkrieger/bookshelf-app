@@ -197,7 +197,7 @@ $(document).ready(function(){
 
   $markRead = $(".btn-info");
   $hiddenForm = $(".row-hidden");
-  $hiddenForm.slideUp();
+  $hiddenForm.slideUp(0);
   $active = $(".active");
 
   $markRead.on("click", function(event){

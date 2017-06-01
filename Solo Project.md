@@ -18,8 +18,6 @@
 ## Questions/Issues
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
-10. Look at FlaskMail for sending book recommendations to a friend.
-11. Check for N + 1 problems.
 
 ## Basic features
 
@@ -40,10 +38,10 @@
 * Parallax home page
 * DONE - Add a test to check password reset
 * Remove duplicates from the book search
-* The ability to follow other users and see their booklists/bookshelves
+* DONE - The ability to follow other users and see their booklists/bookshelves
 * A D3 vizualization using the book metadata collected
 * The ability to see all reviews by users you are following when you click on a book's show page
-* The ability to send a specific user or email address a book recommendation
+* DONE - The ability to send a specific user or email address a book recommendation
 
 ## Milestone targets
 
