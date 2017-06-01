@@ -73,7 +73,7 @@
               <div class="col-xs-10 col-xs-offset-1 text-center add-form">
                 {{ form.csrf_token }}                 
                 <p>
-                  {{ form.recipient(placeholder="recipient", class="form-control") }}
+                  {{ form.recipient(placeholder="recipient(s)", class="form-control active") }}
                   <span class="text-danger">
                     {% if form.recipient.errors %}
                       {% for error in form.recipient.errors %}

@@ -193,16 +193,20 @@ $(document).ready(function(){
   });
 
 
-  // add an event listener to mark a book as read
+  // add an event listener to mark a book as read or email recommendation
 
   $markRead = $(".btn-info");
   $hiddenForm = $(".row-hidden");
   $hiddenForm.slideUp();
+  $active = $(".active");
 
   $markRead.on("click", function(event){
 
     $hiddenForm.css("visibility","visible")
                .slideToggle();
+
+    $active.focus();
+
 
   });
 
