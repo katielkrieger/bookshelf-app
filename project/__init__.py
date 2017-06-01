@@ -18,6 +18,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or "who knows"
+app.config.update(dict(
+    DEBUG = True,
+    MAIL_SERVER = 'smtp.googlemail.com',
+    MAIL_PORT = 587,
+    MAIL_USE_TLS = True,
+    MAIL_USE_SSL = False,
+    MAIL_USERNAME = 'mybookshelvesapp@gmail.com',
+    MAIL_PASSWORD = 'webinarz',
+    ADMINS = ['katielkrieger@gmail.com']
+))
 app.jinja_env.auto_reload = True
 
 modus = Modus(app)

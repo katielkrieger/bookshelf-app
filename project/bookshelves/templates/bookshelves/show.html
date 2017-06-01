@@ -20,14 +20,9 @@
           {{ user.username }}'s review ({{ book.rating }} out of 10)
         </footer>
       </blockquote>
-
-      
       {% if current_user.id == user.id %}
         <a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit review</span></a>
       {% endif %}
-
-
-
   </div>
 </div>
 <div class="row">
@@ -54,6 +49,51 @@
   </div>
 </div>
 {% endif %}
+
+
+
+
+<div class="row text-center">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+  <h5>
+    <button type="button" class="btn btn-info" aria-label="Left Align">
+      <span class="glyphicon glyphicon-share-alt glyphicon-large" aria-hidden="true"></span>
+    </button>
+    <span>Email recommendation</span>
+  </h5>
+ </div>
+</div>
+
+    <section>
+      <div class="row row-hidden">
+        <div class="text-center">
+          <form class="form" action="{{ url_for('bookshelves.email', user_id=user.id, book_id=book.book.id) }}" method="POST">
+            <div class="form-group">
+              <div class="col-xs-10 col-xs-offset-1 text-center add-form">
+                {{ form.csrf_token }}                 
+                <p>
+                  {{ form.recipient(placeholder="recipient", class="form-control") }}
+                  <span class="text-danger">
+                    {% if form.recipient.errors %}
+                      {% for error in form.recipient.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    {% endif %}
+                  </span>
+                </p>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit align-right" class="btn btn-default search">Send email</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+
 
 <div class="row text-center">
   <div class="col-xs-10 col-xs-offset-1">

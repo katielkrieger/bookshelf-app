@@ -7,7 +7,8 @@
 * Virtual env: `solo-project`
 * Database: `solo-project`
 * Heroku app name : `my-bookshelves` (secret key is `webinarz`)
-* GitHub repo: TBD
+* GitHub repo: `bookshelf-app`
+* Gmail account for mail feature: username `mybookshelvesapp`, pw `webinarz`
 
 ## General resources
 
@@ -17,7 +18,6 @@
 ## Questions/Issues
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
-3. Finish adding following/followers.
 10. Look at FlaskMail for sending book recommendations to a friend.
 11. Check for N + 1 problems.
 

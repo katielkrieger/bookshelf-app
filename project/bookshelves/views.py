@@ -102,7 +102,7 @@ def show_get(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
   bookshelf = Booklist.query.filter_by(user=user).filter_by(book=book).first()
-  form = EditBookshelfForm(request.form)
+  form = EmailForm(request.form)
   return render_template('bookshelves/show.html', book=bookshelf, form=form, user=user)
 
 @bookshelves_blueprint.route('/<int:book_id>/edit')
@@ -115,7 +115,7 @@ def edit(user_id, book_id):
   form = EditBookshelfForm(request.form)
   return render_template('bookshelves/edit.html', book=book, form=form, user=user)
 
-@bookshelves_blueprint.route('/<int:book_id>/email',methods=["GET","POST"])
+@bookshelves_blueprint.route('/<int:book_id>/email',methods=["POST"])
 @login_required
 @ensure_correct_user
 def email(user_id, book_id):
@@ -127,5 +127,5 @@ def email(user_id, book_id):
                 sender=current_user.email,
                 recipients=[request.form['recipient']])
     mail.send(msg)
-    return redirect(url_for('bookshelves.index'))
-  return render_template('bookshelves/email.html', form=form, book=book, user=user)
+    return redirect(url_for('bookshelves.index', user_id=user.id))
+  # return render_template('bookshelves/email.html', form=form, book=book, user=user)
