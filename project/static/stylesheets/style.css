@@ -149,6 +149,32 @@ input[type="radio"]{
   vertical-align: middle;
 }
 
+.black img {
+  display: inline-block;
+}
+
+.black img:hover {
+  opacity: .5;
+}
+
+.black {
+  display: inline-block;
+  background: black;
+  padding: 0;
+}
+
+.black-rounded img:hover {
+  opacity: .7;
+}
+
+.black-rounded {
+  display: inline-block;
+  background: black;
+  border-radius: 30px;
+  padding: 0;
+}
+
+
 .cover-grid {
   height: 200px;
 }
@@ -187,11 +213,5 @@ input[type="radio"]{
 .shelf-photo-holder {
   margin-top: 5rem;
   height: 36rem;
-}
-
-.border:hover {
-  border: gray;
-  border-width: 1rem;
-  border-style: solid;
 }
 

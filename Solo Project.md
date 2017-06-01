@@ -18,8 +18,7 @@
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
 2. Make the user index page better.
-3. Add link to bookshelf/booklist opposite on each index page.
-4. Add hover transparent mask to book index pages.
+3. Finish adding following/followers.
 10. Look at FlaskMail for sending book recommendations to a friend.
 
 ## Basic features
