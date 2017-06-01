@@ -13,7 +13,8 @@ class BookshelfForm(FlaskForm):
     pages=HiddenField()#StringField('pages')  
     image_url=HiddenField()#StringField('image_url')  
     preview_url=HiddenField()#StringField('preview_url')  
-    date_published=HiddenField()#StringField('date_published')  
+    date_published=HiddenField()#StringField('date_published') 
+    nyt_review_url=HiddenField() 
     rating = RadioField('rating', choices=[("1",1),("2",2),("3",3),("4",4),("5",5),("6",6),("7",7),("8",8),("9",9),("10",10)], default='1', validators=[DataRequired()])
     review = StringField('review', widget=TextArea())
 

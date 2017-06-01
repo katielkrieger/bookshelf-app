@@ -40,6 +40,7 @@ def index(user_id):
         image_url=request.form['image_url'], 
         preview_url=request.form['preview_url'], 
         date_published=request.form['date_published'], 
+        nyt_review_url=request.form['nyt_review_url']
       )
       db.session.add(new_book)
       new_bookshelf = Booklist(

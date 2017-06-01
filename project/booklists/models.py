@@ -15,8 +15,9 @@ class Book(db.Model, UserMixin):
     image_url = db.Column(db.Text)
     preview_url = db.Column(db.Text)
     date_published = db.Column(db.Text)
+    nyt_review_url = db.Column(db.Text)
 
-    def __init__(self, title, author, categories, snippet, description, pages, image_url, preview_url, date_published):
+    def __init__(self, title, author, categories, snippet, description, pages, image_url, preview_url, date_published, nyt_review_url):
         self.title = title
         self.author = author
         self.categories = categories
@@ -26,6 +27,7 @@ class Book(db.Model, UserMixin):
         self.image_url = image_url
         self.preview_url = preview_url
         self.date_published = date_published
+        self.nyt_review_url = nyt_review_url
  
     def __repr__(self):
         return "Book #{}: {} by {}".format(self.id, self.title, self.author)

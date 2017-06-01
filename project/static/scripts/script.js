@@ -124,6 +124,26 @@ $(document).ready(function(){
         }
     });
 
+    // ajax call to NYT for review
+
+    var urlNYT = "https://api.nytimes.com/svc/books/v3/reviews.json";
+    urlNYT += '?' + $.param({
+      'api-key': "3baa47a8549145ffb79ca653ab42a969",
+      'title': searchTitle,
+      'author': searchAuthor
+    });
+    $.ajax({
+      url: urlNYT,
+      method: 'GET',
+    }).done(function(result) {
+      console.log(result);
+    }).fail(function(err) {
+      throw err;
+    }).then(function(response){
+      var nyt_review_url = response.results[0].url;
+
+    });  
+
   });
 
   // add event listener for selection of one of the books
@@ -150,6 +170,7 @@ $(document).ready(function(){
       var $image_url = $('#image_url');
       var $preview_url = $('#preview_url');
       var $date_published = $('#date_published');
+      var $nyt_review_url = $('#nyt_review_url');
 
       $title.val(array[i].title);
       // $title.val(array[i].title);
@@ -169,6 +190,7 @@ $(document).ready(function(){
       $image_url.val(array[i].image_url);
       $preview_url.val(array[i].preview_url);
       $date_published.val(array[i].date_published);
+      $nyt_review_url.val(nyt_review_url);
 
       // show form-hidden
       $hiddenForm = $(".form-hidden");
