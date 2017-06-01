@@ -5,38 +5,14 @@
   <div class="alert alert-info">{{ message }}</div>
 {% endfor %}
 
-<h3>About {{ user.username }}</h3>
+<h3 class="text-center">{{ user.username }}</h3>
 
 
 
-<p>
+<p class="text-center">
   <strong>{{ user.name }}</strong>
 </p>
-<div>
-  {# <h5>More options</h5> #}
 
-  {% if current_user.id == user.id %}
-    <div>
-      <a href="{{ url_for('users.edit', user_id=user.id) }}">Edit account settings</a>
-    </div>
-
-    <div>
-      <a href="{{ url_for('users.edit_password', user_id=user.id) }}">Change password</a>
-    </div>
-
-
-  {% elif current_user.is_authenticated %}
-    {% if current_user.is_following(user) %}
-      <form method="POST" action="{{url_for('users.follower', follower_id=user.id)}}?_method=DELETE">
-        <input type="submit" value="Unfollow" class="btn btn-warning">
-      </form>
-    {% else %}
-      <form method="POST" action="{{url_for('users.follower', follower_id=user.id)}}">
-        <input type="submit" value="Follow" class="btn btn-info">
-      </form>
-    {% endif %}
-  {% endif %}
-</div>
 
 
 <div class="container">
@@ -86,7 +62,31 @@
   </div>
 </div>
 
+<div class="text-center">
+  {# <h5>More options</h5> #}
 
+  {% if current_user.id == user.id %}
+    <div>
+      <a href="{{ url_for('users.edit', user_id=user.id) }}">Edit account settings</a>
+    </div>
+
+    <div>
+      <a href="{{ url_for('users.edit_password', user_id=user.id) }}">Change password</a>
+    </div>
+
+
+  {% elif current_user.is_authenticated %}
+    {% if current_user.is_following(user) %}
+      <form method="POST" action="{{url_for('users.follower', follower_id=user.id)}}?_method=DELETE">
+        <input type="submit" value="Unfollow" class="btn btn-warning">
+      </form>
+    {% else %}
+      <form method="POST" action="{{url_for('users.follower', follower_id=user.id)}}">
+        <input type="submit" value="Follow" class="btn btn-info">
+      </form>
+    {% endif %}
+  {% endif %}
+</div>
 
 {# <hr class="hr"> #}
 

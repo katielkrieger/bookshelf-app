@@ -6,13 +6,38 @@
 {% endfor %}
 
 
-<h3>Check out what other people are reading</h3>
-{% for user in users %}
+{# <h3>Check out what other people are reading</h3> #}
+{# {% for user in users %} #}
 
-  <h5 class="users">
+ {#  <h5 class="users">
     <a href="{{ url_for('users.show', user_id=user.id)}}" >{{user.username}}</a>
-  </h5>
+  </h5> #}
 
-{% endfor %}
+
+<h2 class="text-center">Need inspiration?
+</h2>
+
+<h4 class="text-center">Check out what other people are reading
+</h4>
+
+
+  <div class="row books text-center">
+    {% for book in books %}
+      
+      <div class="col-xs-12 col-sm-2 form-group">
+        <div class="cover-grid">
+          <span class="helper"></span>
+          <a class="black" href="{{ url_for('bookshelves.show', user_id=book.user.id, book_id=book.book.id) }}">
+            <img src="{{ book.book.image_url }}">
+          </a>
+        </div>
+        <div>
+          {{ book.rating }} out of 10
+        </div>
+      </div>
+
+    {% endfor %}
+  </div>
+{# {% endfor %} #}
 
 {% endblock %}

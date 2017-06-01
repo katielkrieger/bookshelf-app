@@ -70,10 +70,6 @@ section {
 .navbar span, .navbar-default .navbar-nav>li>a {
   color: white;
 }
-/*
-.white {
-  color: white;
-}*/
 
 .login {
   margin-top: 10%;
@@ -194,7 +190,7 @@ input[type="radio"]{
 }
 
 .bottom-margin {
-  margin-bottom: 16rem;
+  margin-bottom: 8rem;
 }
 
 .users {
@@ -211,7 +207,7 @@ input[type="radio"]{
 }
 
 .shelf-photo-holder {
-  margin-top: 5rem;
+  margin-top: 0rem;
   height: 36rem;
 }
 

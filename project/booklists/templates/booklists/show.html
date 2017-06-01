@@ -20,7 +20,9 @@
           {{ user.username }}'s comments
         </footer>
       </blockquote>
-      <a href="{{ url_for('booklists.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit comments</span></a>
+      {% if current_user.id == user.id %}
+        <a href="{{ url_for('bookshelves.edit', user_id=user.id, book_id=book.book.id) }}"><span class="glyphicon glyphicon-edit glyphicon-large"></span><span> Edit review</span></a>
+      {% endif %}
   </div>
 </div>
 <div class="row">

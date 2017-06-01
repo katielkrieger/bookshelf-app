@@ -23,7 +23,8 @@ def ensure_correct_user(fn):
 
 @users_blueprint.route('/')
 def index():
-    return render_template('users/index.html', users=User.query.all())
+    bookshelves = Booklist.query.filter_by(list_type="bookshelf").all()
+    return render_template('users/index.html', books=bookshelves)
 
 @users_blueprint.route('/signup', methods=["GET", "POST"])
 def signup():

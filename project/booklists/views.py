@@ -72,7 +72,7 @@ def new(user_id):
 
 @booklists_blueprint.route('/<int:book_id>', methods=["GET","PATCH","DELETE"])
 @login_required
-@ensure_correct_user
+# @ensure_correct_user
 def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)

@@ -8,7 +8,7 @@
 <h2 class="text-center">{{ user.username }}'s Bookshelf
 </h2>
   <div class="col-xs-10 col-xs-offset-1 text-center">
-    <a href="{{ url_for('booklists.index', user_id=user.id) }}"><span class="glyphicon glyphicon-arrow-left glyphicon-large"></span><span> Switch to {{ user.username }}'s booklist</span></a>
+    <a href="{{ url_for('booklists.index', user_id=user.id) }}"><span>Switch to {% if current_user.id == user.id %}my{% else %}{{ user.username }}'s{% endif %} booklist </span><span class="glyphicon glyphicon-arrow-right glyphicon-large"></span></a>
   </div>
 
   <div class="row books text-center">
@@ -27,6 +27,10 @@
       </div>
 
     {% endfor %}
+
+    <div class="col-xs-10 col-xs-offset-1 text-center">
+    <a href="{{ url_for('users.show', user_id=user.id) }}"><span class="glyphicon glyphicon-arrow-left glyphicon-large"></span><span> Back to {% if current_user.id == user.id %}my{% else %}{{ user.username }}'s{% endif %} profile page</span></a>
+  </div>
   </div>
 {# </div> #}
 {% endblock %}
