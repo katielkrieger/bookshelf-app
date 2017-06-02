@@ -15,7 +15,7 @@
 <div class="row books text-center">
   {% for book in books %}
     
-      <div class="col-xs-12 col-sm-2 form-group">
+      <div class="col-xs-12 col-sm-3 col-md-2 form-group">
         <div class="cover-grid">
           <span class="helper"></span>
           <a class="black" href="{{ url_for('booklists.show_get', user_id=user.id, book_id=book.book.id) }}">
