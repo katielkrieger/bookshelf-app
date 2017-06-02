@@ -121,7 +121,10 @@ def show_get(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
   booklist = Booklist.query.filter_by(user=user).filter_by(book=book).first()
-  form = EditBookshelfForm(request.form)
+  if booklist.user.id !=  current_user.id:
+    form = EditBooklistForm(request.form)
+  else:
+    form = EditBookshelfForm(request.form)
   return render_template('booklists/show.html', book=booklist, form=form, user=user)
 
 @booklists_blueprint.route('/<int:book_id>/edit')
