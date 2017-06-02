@@ -178,7 +178,7 @@
         </h5>
 
         {% for reviews in full_bookshelf %}
-          {% if reviews.book_id == book.book.id %}
+          {% if reviews.book_id == book.book.id and reviews.user_id != current_user.id %}
           
             <div class="col-xs-12 col-sm-3 col-md-2 form-group">
               <div>
@@ -188,7 +188,7 @@
                 {{ reviews.review }}
               </div>
               <div>
-                - {{ user.username }}
+                - {{ reviews.user.username }}
               </div>
             </div>
           {% endif %}
