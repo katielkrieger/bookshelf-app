@@ -117,7 +117,7 @@ def show(user_id, book_id):
     form = EditBooklistForm(request.form)
     if form.validate():
       db.session.delete(booklist)
-      db.session.delete(book)
+      # db.session.delete(book)
       db.session.commit()
       flash("Book successfully removed from your booklist")
       return redirect(url_for('booklists.index', user_id=user_id))

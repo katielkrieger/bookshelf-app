@@ -101,7 +101,7 @@ def show(user_id, book_id):
   if request.method == b"DELETE":
     if form.validate():
       db.session.delete(bookshelf)
-      db.session.delete(book)
+      # db.session.delete(book)
       db.session.commit()
       flash("Book successfully removed from your bookshelf")
       return redirect(url_for('bookshelves.index', user_id=user_id))
