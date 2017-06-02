@@ -25,6 +25,17 @@
           {# <span class="helper"></span> #}
           <a href="{{ url_for('users.show', user_id=following.id) }}"><h5>{{ following.username }}</h5>
           </a>
+          {% if current_user.is_authenticated %}
+            {% if current_user.is_following(following) %}
+              <form method="POST" action="{{url_for('users.follower', follower_id=following.id)}}?_method=DELETE">
+                <input type="submit" value="Unfollow" class="btn btn-warning">
+              </form>
+            {% else %}
+              <form method="POST" action="{{url_for('users.follower', follower_id=following.id)}}">
+                <input type="submit" value="Follow" class="btn btn-info">
+              </form>
+            {% endif %}
+          {% endif %}
         </div>
       </div>
     {% endfor %}
