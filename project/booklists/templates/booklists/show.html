@@ -181,7 +181,7 @@
         <h5>
           What others are saying
         </h5>
-        <h6>Average rating: {{ average_rating }}</h6>
+        <h6 class="bottom-margin-small">Average rating: {{ average_rating }}</h6>
 
         {% for reviews in full_bookshelf %}
           {% if reviews.book_id == book.book.id and reviews.user_id != user.id %}

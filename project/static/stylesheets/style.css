@@ -193,6 +193,10 @@ input[type="radio"]{
   margin-bottom: 8rem;
 }
 
+.bottom-margin-small {
+  margin-bottom: 4rem;
+}
+
 .users {
   margin-top: 2rem;
   margin-bottom: 2rem;
