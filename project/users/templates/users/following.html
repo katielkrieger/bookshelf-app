@@ -20,8 +20,8 @@
   <div class="row books text-center">
 
     {% for following in user.all_following %}
-      <div class="col-xs-12 col-sm-2 form-group">
-        <div class="cover-grid">
+      <div class="col-xs-12 col-sm-4 col-md-2 form-group">
+        <div>
           {# <span class="helper"></span> #}
           <a href="{{ url_for('users.show', user_id=following.id) }}"><h5>{{ following.username }}</h5>
           </a>
