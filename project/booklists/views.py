@@ -130,7 +130,7 @@ def show_get(user_id, book_id):
   user = User.query.get_or_404(user_id)
   booklist = Booklist.query.filter_by(user=user).filter_by(book=book).first()
   full_bookshelf = Booklist.query.filter_by(book=book).filter_by(list_type="bookshelf").all()
-  average_rating = sum([b.rating for b in full_bookshelf])/len([b.rating for b in full_bookshelf])
+  average_rating = round(sum([b.rating for b in full_bookshelf])/len([b.rating for b in full_bookshelf])/1)
   if booklist.user.id !=  current_user.id:
     form = EditBooklistForm(request.form)
   else:
