@@ -4,7 +4,7 @@ $(document).ready(function(){
   // add d3 vizualiation on user home page
 
   var height = 400;
-  var padding = 30; 
+  var padding = 60; 
   var width = 600; // giving it room to breathe
   var svg = d3.select('svg')
                 .attr('width', width)
@@ -14,10 +14,12 @@ $(document).ready(function(){
                     .append("div")
                     .attr("class", "tooltip");
 
+  // get user_id
+  var url = window.location.href;
+  var user_id = url.split('users/')[1];
+
   d3.queue()
-    // window.location.href --> url, parse to get user_id
-    // make request to users/<user_id>/json
-        .defer(d3.json, "d3.json")
+        .defer(d3.json, user_id + "/d3.json")
         .await(function(error, data) {
             if (error) console.log(error);
 
@@ -45,7 +47,7 @@ $(document).ready(function(){
                 .call(horizontalAxis);
 
             svg.append("g")
-                .attr("transform", `translate(${padding}, 0)`) // Y shift was -padding
+                .attr("transform", `translate(${padding}, 0)`) 
                 .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
                 .call(verticalAxis);
 
@@ -57,17 +59,38 @@ $(document).ready(function(){
                 .attr('cx', d => xScale(d.pages)) // pages
                 .attr('cy', d => yScale(d.rating)) // rating
                 .attr('r', d => 7) // fixed
-                .attr('fill', "green") // fixed
+                .attr('fill', "#B4D6DE") // fixed
                 .attr('stroke', 'black')
                 .on("mouseenter", function(d) {
-                    tooltip.html(`Rating: ${d[0]} out of 10`)
+                    tooltip.text(`${d.title}: ${d.rating} out of 10`)
                            .style("opacity", .9)
-                           .style("left", d3.event.pageX)
-                           .style("top", d3.event.pageY)
+                           .style("left", d3.event.pageX+"px")
+                           .style("top", d3.event.pageY+"px")
                 })
                 .on("mouseout", function() {
                     tooltip.style("opacity", 0)
+                })
+                .on("click", function(d) {
+                  location.href = `/users/${user_id}/bookshelves/${d.bookshelf_id}`
                 });
+
+            svg.append("text")
+              .attr("transform", "rotate(-90)")
+              .attr("y", 0 + padding/6)
+              .attr("x",0 - (height / 2))
+              .attr("dy", "1em")
+              .style("text-anchor", "middle")
+              .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
+              .text("Rating");
+
+            svg.append("text")
+              // .attr("transform", "rotate(-90)")
+              .attr("y", height - padding/2)
+              .attr("x", width/2)
+              .attr("dy", "1em")
+              .style("text-anchor", "middle")
+              .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
+              .text("Pages");
 
         });
 

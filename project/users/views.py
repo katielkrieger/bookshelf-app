@@ -149,11 +149,12 @@ def following(user_id):
 def followers(user_id):
   return render_template('users/followers.html', user=User.query.get(user_id))
 
-@users_blueprint.route('/d3.json')
-def d3():
-  # found_user = User.query.get_or_404(user_id)
-  books = Booklist.query.all()
-  d3_list = [{"rating": b.rating, "pages": int(b.book.pages)} for b in books]
+@users_blueprint.route('/<int:user_id>/d3.json')
+def d3(user_id):
+  found_user = User.query.get_or_404(user_id)
+  books = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
+  # books = Booklist.query.all()
+  d3_list = [{"rating": b.rating, "pages": int(b.book.pages), "title": b.book.title, "bookshelf_id": b.book.id} for b in books]
   # from IPython import embed; embed()
   # ratings = [b.rating for b in books]
   # pages = [int(b.book.pages) for b in books]
