@@ -71,10 +71,12 @@
 </div>
 
 <div class="center row">
-  <h5>Vizualize {{ user.username }}'s book reviews</h5>
+  <h6>{% if average_rating != "None" %}<h5>Vizualize {% if current_user.id == user.id %}your{% else %}{{ user.username }}'s{% endif %} book reviews</h5>{% endif %}
   
   <h6>{% if average_rating != "None" %}Average rating: {{ average_rating }}{% else %}No reviews yet{% endif %}</h6>
-  <svg></svg>
+  {% if average_rating != "None" %}
+    <svg></svg>
+  {% endif %}
 </div>
 
 <div class="text-center">

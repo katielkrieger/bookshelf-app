@@ -52,6 +52,56 @@
 
 
 
+{% if book.user.id !=  current_user.id %}
+
+<div class="row text-center">
+  <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+
+  <h5>
+    <button type="button" class="btn btn-info" aria-label="Left Align">
+      <span class="glyphicon glyphicon-ok glyphicon-large" aria-hidden="true"></span>
+    </button>
+    <span>Add to your booklist</span>
+  </h5>
+ </div>
+</div>
+
+    <section>
+      <div class="row row-hidden">
+        <div class="text-center">
+          <form class="form" action="{{ url_for('booklists.show', user_id=current_user.id, book_id=book.book.id) }}" method="POST">
+            <div class="form-group">
+              <div class="col-xs-10 col-xs-offset-1 text-center add-form">
+            
+                {{ form.csrf_token }}
+
+                <p>
+                  {{ form.comments(placeholder="comments", class="form-control") }}
+                  <span class="text-danger">
+                    {% if form.comments.errors %}
+                      {% for error in form.comments.errors %}
+                        {{ error }}
+                      {% endfor %}
+                    {% endif %}
+                  </span>
+                </p>
+              </div>
+              <div class="col-xs-12">
+                <button type="submit align-right" class="btn btn-default search">Add to booklist</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+{% else %}
 
 <div class="row text-center">
   <div class="col-xs-12 col-sm-6 col-sm-offset-3">
@@ -91,7 +141,7 @@
         </div>
       </div>
 
-
+{% endif %}
 
 
 

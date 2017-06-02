@@ -71,12 +71,30 @@ def new(user_id):
   user = User.query.get_or_404(user_id)
   return render_template('booklists/new.html', form=form, user=user)
 
-@booklists_blueprint.route('/<int:book_id>', methods=["PATCH","DELETE"])
+@booklists_blueprint.route('/<int:book_id>', methods=["POST","PATCH","DELETE"])
 @login_required
 @ensure_correct_user
 def show(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
+  if request.method== "POST":
+    form = EditBooklistForm(request.form)
+    if form.validate():
+      new_booklist = Booklist(
+        list_type='booklist',
+        comments=request.form['comments'],
+        rating=1,
+        review='',
+        user=user,
+        book=book
+      )
+      db.session.add(new_booklist)
+      db.session.commit()
+      flash("Book added successfully!")
+      return redirect(url_for('booklists.index', user_id=user_id))
+    flash("Please try again")
+    return render_template('booklists/new.html', form=form, user=user)
+  
   booklist = Booklist.query.filter_by(user=user).filter_by(book=book).first()
   if request.method == b"PATCH":
     form = EditBooklistForm(request.form)

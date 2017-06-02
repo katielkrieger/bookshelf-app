@@ -3,6 +3,7 @@ from flask_mail import Message
 from project.booklists.models import Book
 from project.users.models import User, Booklist
 from project.bookshelves.forms import BookshelfForm, EditBookshelfForm, EmailForm
+from project.booklists.forms import EditBooklistForm
 from project import db, bcrypt, mail
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
@@ -103,7 +104,10 @@ def show_get(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
   bookshelf = Booklist.query.filter_by(user=user).filter_by(book=book).first()
-  form = EmailForm(request.form)
+  if bookshelf.user.id !=  current_user.id:
+    form = EditBooklistForm(request.form)
+  else:
+    form = EmailForm(request.form)
   return render_template('bookshelves/show.html', book=bookshelf, form=form, user=user)
 
 @bookshelves_blueprint.route('/<int:book_id>/edit')
