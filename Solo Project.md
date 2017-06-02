@@ -19,6 +19,7 @@
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
 2. Add tests for followers, following.
+3. Bug when looking at index page -- some of the books don't exist.
 
 ## Basic features
 
@@ -40,7 +41,7 @@
 * DONE - Add a test to check password reset
 * NOT NEEDED - Remove duplicates from the book search
 * DONE - The ability to follow other users and see their booklists/bookshelves
-* A D3 vizualization using the book metadata collected
+* DONE - A D3 vizualization using the book metadata collected
 * The ability to see all reviews by users you are following when you click on a book's show page
 * DONE - The ability to send a specific user or email address a book recommendation
 
