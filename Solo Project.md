@@ -19,7 +19,9 @@
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
 2. Add tests for followers, following.
-3. Bug when looking at index page -- some of the books don't exist.
+3. Write readme.
+4. Add a "discover new users" feature.
+5. Troubleshoot issue if None Found for most attributes. Pages has to be an integer.
 
 ## Basic features
 

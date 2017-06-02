@@ -6,7 +6,7 @@ $(document).ready(function(){
   var height = 400;
   var padding = 80; 
   var paddingTop = 20;
-  var width = 600; // giving it room to breathe
+  var width = Math.min(window.innerWidth - 2*padding, 600); 
   var svg = d3.select('svg')
                 .attr('width', width)
                 .attr('height', height);

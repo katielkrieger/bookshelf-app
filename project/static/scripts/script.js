@@ -60,7 +60,7 @@ $(document).ready(function(){
               array[i].author = response.items[i].volumeInfo.authors || "None found";
               array[i].categories = response.items[i].volumeInfo.categories || "None found";
               array[i].description = response.items[i].volumeInfo.description || "None found";
-              array[i].pages = response.items[i].volumeInfo.pageCount || "None found";
+              array[i].pages = response.items[i].volumeInfo.pageCount || 0;
               array[i].preview_url = response.items[i].volumeInfo.previewLink || "None found";
               array[i].date_published = response.items[i].volumeInfo.publishedDate || "None found"; 
               if (response.items[i].volumeInfo.imageLinks) {
@@ -73,7 +73,7 @@ $(document).ready(function(){
               array[i].author = "None found";
               array[i].categories = "None found";
               array[i].description = "None found";
-              array[i].pages = "None found";
+              array[i].pages = 0;
               array[i].image_url = "None found";
               array[i].preview_url = "None found";
               array[i].date_published = "None found";
