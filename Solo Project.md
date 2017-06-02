@@ -20,7 +20,6 @@
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
 2. Add tests for followers, following.
 3. Write readme.
-4. Add a "discover new users" feature. Maybe on a book page, see other users who have that book? `Book.query.filter_by(book=book).all()`?
 
 ## Basic features
 
@@ -43,7 +42,7 @@
 * NOT NEEDED - Remove duplicates from the book search
 * DONE - The ability to follow other users and see their booklists/bookshelves
 * DONE - A D3 vizualization using the book metadata collected
-* The ability to see all reviews by users you are following when you click on a book's show page
+* DONE - The ability to see all reviews by users you are following when you click on a book's show page
 * DONE - The ability to send a specific user or email address a book recommendation
 
 ## Milestone targets

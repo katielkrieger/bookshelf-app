@@ -44,7 +44,12 @@
       <strong>Category</strong>: {{ book.book.categories }}
     </div>
     <div>
-      {% if book.book.nyt_review_url != "None found" and book.book.nyt_review_url != None %}<strong>Published Review</strong>: <a target="_blank" href="{{ book.book.nyt_review_url }}">New York Times book review</a>{% endif %}
+      {% if book.book.nyt_review_url != "None found" and book.book.nyt_review_url != None %}
+      <span>
+        <a target="_blank" href="http://developer.nytimes.com"><img src="{{ url_for('static', filename='images/nyt.png') }}"></a>
+      </span>
+      <strong>Published Review</strong>: <a target="_blank" href="{{ book.book.nyt_review_url }}">New York Times book review</a>
+    {% endif %}
     </div>
   </div>
 </div>
