@@ -164,6 +164,41 @@
     </section>
 
 {% endif %}
+
+
+
+{% if full_bookshelf|length > 0 %}
+
+  <hr>
+  <section>
+    <div class="row text-center">
+      <div class="col-xs-10 col-xs-offset-1">
+        <h5>
+          What other users are saying
+        </h5>
+
+        {% for reviews in full_bookshelf %}
+          {% if reviews.book_id == book.book.id %}
+          
+            <div class="col-xs-12 col-sm-3 col-md-2 form-group">
+              <div>
+                <strong>{{ reviews.rating }} out of 10</strong>
+              </div>
+              <div>
+                {{ reviews.review }}
+              </div>
+              <div>
+                - {{ user.username }}
+              </div>
+            </div>
+          {% endif %}
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+{% endif %}
    
 
 

@@ -42,14 +42,22 @@ def index(user_id):
         date_published=request.form['date_published'],
         nyt_review_url=request.form['nyt_review_url'] 
       )
-      db.session.add(new_book)
+      # check if this book is already in the database - if it is, don't add it
+      found_book = Book.query.filter_by(title=new_book.title).filter_by(author=new_book.author)
+      if found_book.count() > 0:
+        book_to_add=found_book.first()
+      else:
+        # only if not in the database already
+        db.session.add(new_book)
+        db.session.commit()
+        book_to_add=new_book
       new_booklist = Booklist(
         list_type='booklist',
         comments=request.form['comments'],
         rating=1,
         review='',
         user=user,
-        book=new_book
+        book=book_to_add
       )
       db.session.add(new_booklist)
       db.session.commit()
@@ -121,11 +129,12 @@ def show_get(user_id, book_id):
   book = Book.query.get_or_404(book_id)
   user = User.query.get_or_404(user_id)
   booklist = Booklist.query.filter_by(user=user).filter_by(book=book).first()
+  full_bookshelf = Booklist.query.filter_by(book=book).filter_by(list_type="bookshelf").all()
   if booklist.user.id !=  current_user.id:
     form = EditBooklistForm(request.form)
   else:
     form = EditBookshelfForm(request.form)
-  return render_template('booklists/show.html', book=booklist, form=form, user=user)
+  return render_template('booklists/show.html', book=booklist, form=form, user=user, full_bookshelf=full_bookshelf)
 
 @booklists_blueprint.route('/<int:book_id>/edit')
 @login_required
