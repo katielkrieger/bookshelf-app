@@ -6,6 +6,7 @@ from project.bookshelves.forms import BookshelfForm, EditBookshelfForm, EmailFor
 from project.booklists.forms import EditBooklistForm
 from project import db, bcrypt, mail
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy.sql import func
 from flask_login import current_user, login_required
 from functools import wraps
 
@@ -113,11 +114,12 @@ def show_get(user_id, book_id):
   user = User.query.get_or_404(user_id)
   bookshelf = Booklist.query.filter_by(user=user).filter_by(book=book).first()
   full_bookshelf = Booklist.query.filter_by(book=book).filter_by(list_type="bookshelf").all()
+  average_rating = sum([b.rating for b in full_bookshelf])/len([b.rating for b in full_bookshelf])
   if bookshelf.user.id !=  current_user.id:
     form = EditBooklistForm(request.form)
   else:
     form = EmailForm(request.form)
-  return render_template('bookshelves/show.html', book=bookshelf, form=form, user=user, full_bookshelf=full_bookshelf)
+  return render_template('bookshelves/show.html', book=bookshelf, form=form, user=user, full_bookshelf=full_bookshelf, average_rating=average_rating)
 
 @bookshelves_blueprint.route('/<int:book_id>/edit')
 @login_required

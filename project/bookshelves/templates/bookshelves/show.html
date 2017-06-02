@@ -165,11 +165,12 @@
     <div class="row text-center">
       <div class="col-xs-10 col-xs-offset-1">
         <h5>
-          What other users are saying
+          What others are saying
         </h5>
+        <h6>Average rating: {{ average_rating }}</h6>
 
         {% for reviews in full_bookshelf %}
-          {% if reviews.book_id == book.book.id  and reviews.user_id != current_user.id %}
+          {% if reviews.book_id == book.book.id  and reviews.user_id != user.id %}
           
             <div class="col-xs-12 col-sm-3 col-md-2 form-group">
               <div>
