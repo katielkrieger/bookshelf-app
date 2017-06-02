@@ -72,7 +72,8 @@
 
 <div class="center row">
   <h5>Vizualize {{ user.username }}'s book reviews</h5>
-  <h6>Average rating: {{ average_rating }}</h6>
+  
+  <h6>{% if average_rating != "None" %}Average rating: {{ average_rating }}{% else %}No reviews yet{% endif %}</h6>
   <svg></svg>
 </div>
 

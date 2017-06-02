@@ -96,7 +96,10 @@ def show(user_id):
     booklist = Booklist.query.filter_by(user=found_user).filter_by(list_type="booklist").all()
     bookshelf = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
     rating_list = [book.rating for book in bookshelf]
-    average_rating = round(sum(rating_list) / len(rating_list),1)
+    if len(rating_list) == 0:
+        average_rating = "None"
+    else:
+        average_rating = round(sum(rating_list) / len(rating_list),1)
     return render_template('users/show.html', user=found_user, booklist=booklist, bookshelf=bookshelf, average_rating=average_rating)
 
 @users_blueprint.route('/<int:user_id>/edit')

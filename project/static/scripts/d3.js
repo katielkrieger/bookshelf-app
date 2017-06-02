@@ -33,10 +33,10 @@ $(document).ready(function(){
             // console.log(xMax,yMax);
 
             var yScale = d3.scaleLinear()
-                           .domain([0,yMax])
+                           .domain([0,10])
                            .range([height - padding, paddingTop]); // flipping y axis
             var xScale = d3.scaleLinear()
-                           .domain([xMin,xMax]) 
+                           .domain([0,xMax]) 
                            .range([padding, width - padding]);
 
             var horizontalAxis = d3.axisBottom(xScale);
