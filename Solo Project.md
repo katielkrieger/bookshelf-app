@@ -19,7 +19,6 @@
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
 2. Add tests for followers, following.
-3. Make followers/following pages a little better. When they're on xs size, they are spaced super far apart.
 3. Write readme.
 4. Add a "discover new users" feature. Maybe on a book page, see other users who have that book? `Book.query.filter_by(book=book).all()`?
 

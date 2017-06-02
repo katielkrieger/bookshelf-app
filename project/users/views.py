@@ -30,6 +30,12 @@ def index():
     bookshelves = Booklist.query.filter_by(list_type="bookshelf").filter(Booklist.user_id.in_(following_ids)).order_by("rating desc").limit(120).all()
     return render_template('users/index.html', books=bookshelves)
 
+@users_blueprint.route('/discover')
+@login_required
+def discover():
+    bookshelves = Booklist.query.filter_by(list_type="bookshelf").order_by("rating desc").limit(120).all()
+    return render_template('users/discover.html', books=bookshelves)
+
 @users_blueprint.route('/signup', methods=["GET", "POST"])
 def signup():
     form = UserForm(request.form)
