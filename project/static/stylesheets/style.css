@@ -213,7 +213,14 @@ input[type="radio"]{
 
 svg {
   margin-bottom: 5rem;
+  /*background-color: #E8FBFF;*/
+  background-color: #EBEAF2;
+  border-radius: 30px;
+  border-color: gray;
+  border-width: .6rem;
+  border-style: solid;
 }
+
 
 .center {
   margin-top: 4rem;

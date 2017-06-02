@@ -4,7 +4,8 @@ $(document).ready(function(){
   // add d3 vizualiation on user home page
 
   var height = 400;
-  var padding = 60; 
+  var padding = 80; 
+  var paddingTop = 20;
   var width = 600; // giving it room to breathe
   var svg = d3.select('svg')
                 .attr('width', width)
@@ -32,8 +33,8 @@ $(document).ready(function(){
             // console.log(xMax,yMax);
 
             var yScale = d3.scaleLinear()
-                           .domain([yMin,yMax])
-                           .range([height - padding, padding]); // flipping y axis
+                           .domain([0,yMax])
+                           .range([height - padding, paddingTop]); // flipping y axis
             var xScale = d3.scaleLinear()
                            .domain([xMin,xMax]) 
                            .range([padding, width - padding]);
@@ -43,12 +44,12 @@ $(document).ready(function(){
 
             svg.append("g")
                 .attr("transform", `translate(0,${height - padding})`)
-                .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
+                .style('font-family', 'Abril Fatface')
                 .call(horizontalAxis);
 
             svg.append("g")
                 .attr("transform", `translate(${padding}, 0)`) 
-                .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
+                .style('font-family', 'Abril Fatface')
                 .call(verticalAxis);
 
 
@@ -59,10 +60,11 @@ $(document).ready(function(){
                 .attr('cx', d => xScale(d.pages)) // pages
                 .attr('cy', d => yScale(d.rating)) // rating
                 .attr('r', d => 7) // fixed
-                .attr('fill', "#B4D6DE") // fixed
+                .attr('fill', "#8899BF") // fixed
                 .attr('stroke', 'black')
                 .on("mouseenter", function(d) {
-                    tooltip.text(`${d.title}: ${d.rating} out of 10`)
+                    tooltip.html(`<strong><span style='color:#8899BF'>${d.title}:</span></strong> ${d.rating} out of 10`)
+                           .style('font-family', 'Abril Fatface')
                            .style("opacity", .9)
                            .style("left", d3.event.pageX+"px")
                            .style("top", d3.event.pageY+"px")
@@ -80,7 +82,7 @@ $(document).ready(function(){
               .attr("x",0 - (height / 2))
               .attr("dy", "1em")
               .style("text-anchor", "middle")
-              .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
+              .style('font-family', 'Abril Fatface')
               .text("Rating");
 
             svg.append("text")
@@ -89,7 +91,7 @@ $(document).ready(function(){
               .attr("x", width/2)
               .attr("dy", "1em")
               .style("text-anchor", "middle")
-              .style('font-family', '"Source Sans Pro",Calibri,Candara,Arial,sans-serif')
+              .style('font-family', 'Abril Fatface')
               .text("Pages");
 
         });

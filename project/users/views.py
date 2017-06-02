@@ -95,7 +95,9 @@ def show(user_id):
         return redirect(url_for('users.index'))
     booklist = Booklist.query.filter_by(user=found_user).filter_by(list_type="booklist").all()
     bookshelf = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
-    return render_template('users/show.html', user=found_user, booklist=booklist, bookshelf=bookshelf)
+    rating_list = [book.rating for book in bookshelf]
+    average_rating = round(sum(rating_list) / len(rating_list),1)
+    return render_template('users/show.html', user=found_user, booklist=booklist, bookshelf=bookshelf, average_rating=average_rating)
 
 @users_blueprint.route('/<int:user_id>/edit')
 @login_required
@@ -153,11 +155,6 @@ def followers(user_id):
 def d3(user_id):
   found_user = User.query.get_or_404(user_id)
   books = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
-  # books = Booklist.query.all()
   d3_list = [{"rating": b.rating, "pages": int(b.book.pages), "title": b.book.title, "bookshelf_id": b.book.id} for b in books]
-  # from IPython import embed; embed()
-  # ratings = [b.rating for b in books]
-  # pages = [int(b.book.pages) for b in books]
-  # bookshelf = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
   return json.dumps(d3_list)
 
