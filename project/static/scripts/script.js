@@ -72,9 +72,9 @@ $(document).ready(function(){
               array[i].preview_url = response.items[i].volumeInfo.previewLink || "None found";
               array[i].date_published = response.items[i].volumeInfo.publishedDate || "None found"; 
               if (response.items[i].volumeInfo.imageLinks) {
-                array[i].image_url = response.items[i].volumeInfo.imageLinks.thumbnail || "None found";
+                array[i].image_url = response.items[i].volumeInfo.imageLinks.thumbnail || "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
               } else {
-                array[i].image_url = "None found";
+                array[i].image_url = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
               }
             } else {
               array[i].title = "None found";
@@ -82,7 +82,7 @@ $(document).ready(function(){
               array[i].categories = "None found";
               array[i].description = "None found";
               array[i].pages = 0;
-              array[i].image_url = "None found";
+              array[i].image_url = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
               array[i].preview_url = "None found";
               array[i].date_published = "None found";
             }
