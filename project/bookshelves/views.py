@@ -136,3 +136,4 @@ def email(user_id, book_id):
     return redirect(url_for('bookshelves.index', user_id=user.id))
   flash("Invalid email address. Please try again.")
   return render_template('bookshelves/show.html', form=form, book=bookshelf, user=user)
+

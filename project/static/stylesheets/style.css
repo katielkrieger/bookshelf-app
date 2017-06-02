@@ -211,3 +211,11 @@ input[type="radio"]{
   height: 36rem;
 }
 
+svg {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.center {
+  text-align: center;
+}

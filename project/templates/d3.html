@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookshelf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    {# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> #}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='scripts/d3.js') }}"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick.css') }}"/>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick/slick-theme.css') }}"/>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='slick/slick.min.js') }}"></script>
+</head>
+<body id="bootstrap-overrides">
+  <nav class="navbar navbar-default navbar-color">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="{{ url_for('root') }}" class="navbar-brand">
+          {# <img src="{{ url_for('static', filename='images/warbler-logo.png') }}" alt=""> #}
+          <span class="white">My Bookshelves</span>
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_anonymous %}
+          <li><a href="{{ url_for('users.signup') }}">Sign up</a></li>
+          <li><a href="{{ url_for('users.login') }}">Log in</a></li>
+        {% else %}
+          <li><a href="{{ url_for('users.show', user_id=current_user.id) }}">
+            {{ current_user.username }}
+          </a></li>
+          <li><a href="{{ url_for('booklists.new', user_id=current_user.id) }}">Add to Booklist</a></li>
+          <li><a href="{{ url_for('bookshelves.new', user_id=current_user.id) }}">Add to Bookshelf</a></li>
+          <li><a href="{{ url_for('users.logout') }}">Log out</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <img src="{{ url_for('static', filename='images/home-cropped-top.jpg') }}" class="top-img">
+
+  <div class="container-fluid main">
+    <section>
+      {% block content %}
+      {% endblock %}     
+    </section>
+
+    <footer>
+      <div class="row bottom text-center">
+        <img src="{{ url_for('static', filename='images/home-cropped.jpg') }}" class="bottom-img">
+      </div>
+    </footer>
+  </div>
+    
+</body>
+</html>

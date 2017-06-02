@@ -5,6 +5,7 @@ from project import db, bcrypt
 from sqlalchemy.exc import IntegrityError
 from flask_login import login_user, logout_user, current_user, login_required
 from functools import wraps
+import json
 
 users_blueprint = Blueprint(
   'users',
@@ -147,3 +148,15 @@ def following(user_id):
 @login_required
 def followers(user_id):
   return render_template('users/followers.html', user=User.query.get(user_id))
+
+@users_blueprint.route('/d3.json')
+def d3():
+  # found_user = User.query.get_or_404(user_id)
+  books = Booklist.query.all()
+  d3_list = [{"rating": b.rating, "pages": int(b.book.pages)} for b in books]
+  # from IPython import embed; embed()
+  # ratings = [b.rating for b in books]
+  # pages = [int(b.book.pages) for b in books]
+  # bookshelf = Booklist.query.filter_by(user=found_user).filter_by(list_type="bookshelf").all()
+  return json.dumps(d3_list)
+

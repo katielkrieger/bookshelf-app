@@ -42,6 +42,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 comments="Here are my comments about the book."
             ), follow_redirects=True)
             self.assertIn(b'Book added successfully!', response.data)
@@ -64,6 +65,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 rating="9",
                 review="Here is my review of the book."
             ), follow_redirects=True)
@@ -87,6 +89,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 comments="Here are my comments about the book."
             ), follow_redirects=True)
             # confirmed that book.id = 1
@@ -112,6 +115,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 rating="9",
                 review="Here is my review of the book."
             ), follow_redirects=True)
@@ -139,6 +143,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 comments="Here are my comments about the book."
             ), follow_redirects=True)
             # confirmed that book.id = 1
@@ -159,6 +164,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 rating="9",
                 review="Here is my review of the book."
             ), follow_redirects=True)
@@ -180,6 +186,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 comments="Here are my comments on the book."
             ), follow_redirects=True)
             # confirmed that book.id = 1
@@ -208,6 +215,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 rating=6,
                 review="Here is my review of the book."
             ), follow_redirects=True)
@@ -240,6 +248,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 comments="Here are my comments on the book."
             ), follow_redirects=True)
             # confirmed that book.id = 1
@@ -265,6 +274,7 @@ class TestUser(TestCase):
                 image_url="http://books.google.com/books/content?id=MH48bnzN0LUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                 preview_url="http://books.google.com/books?id=MH48bnzN0LUC&printsec=frontcover&dq=kiterunner&hl=&cd=1&source=gbs_api",
                 date_published="2011-09-05",
+                nyt_review_url="dummy.com",
                 rating="9",
                 review="Here is my review of the book."
             ), follow_redirects=True)
