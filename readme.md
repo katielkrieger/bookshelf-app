@@ -41,7 +41,7 @@ To deploy this on a live system, follow the instructions [here](https://devcente
 
 * [JavaScript](https://www.javascript.com/) - Used for client-side development
 * [Python](https://www.python.org/) - Used for server-side development
-[Flask](http://flask.pocoo.org/) - Python microframework
+* [Flask](http://flask.pocoo.org/) - Python microframework
 * [D3.js](https://github.com/d3/d3/) - Used to vizualize book reviews
 * [Flask Mail](https://pythonhosted.org/Flask-Mail/) - Used to send email recommendations
 * [Flask Modus](https://pypi.python.org/pypi/Flask-Modus/0.0.1) - Used to make PATCH and DELETE requests
