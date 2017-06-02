@@ -7,6 +7,14 @@ $(document).ready(function(){
     "infinite": false
   });
 
+  function checkImg(src){
+     var jqxhr = $.get(src, function() {
+       return true;
+     }).fail(function() { 
+      return false;
+     });
+  }
+
 
   // add event listener for search button
   var $search = $(".search");
@@ -101,8 +109,14 @@ $(document).ready(function(){
             $list.addClass("col-xs-10 list");
             $newDiv.append($list);
 
+            if (checkImg(array[i].image_url)) {
+              thumb = array[i].image_url;
+            } else {
+              thumb = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
+            }
+
             var $thumb = $("<img>");
-            $thumb.attr("src", array[i].image_url)
+            $thumb.attr("src", thumb)
                   .css("width","100%");
             $cover.append($thumb);
 
@@ -192,7 +206,13 @@ $(document).ready(function(){
       $snippet.val(array[i].snippet);
       $description.val(array[i].description);
       $pages.val(array[i].pages);
-      $image_url.val(array[i].image_url);
+
+      if (checkImg(array[i].image_url)) {
+        $image_url.val(array[i].image_url);
+      } else {
+        $image_url.val("http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG");
+      }
+
       $preview_url.val(array[i].preview_url);
       $date_published.val(array[i].date_published);
       $nyt_review_url.val(nyt_review_url);
