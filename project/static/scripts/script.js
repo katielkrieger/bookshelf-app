@@ -72,9 +72,9 @@ $(document).ready(function(){
               array[i].preview_url = response.items[i].volumeInfo.previewLink || "None found";
               array[i].date_published = response.items[i].volumeInfo.publishedDate || "None found"; 
               if (response.items[i].volumeInfo.imageLinks) {
-                array[i].image_url = response.items[i].volumeInfo.imageLinks.thumbnail || "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
+                array[i].image_url = response.items[i].volumeInfo.imageLinks.thumbnail || "https://s9.postimg.org/osei889kv/preview.jpg";
               } else {
-                array[i].image_url = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
+                array[i].image_url = "https://s9.postimg.org/osei889kv/preview.jpg";
               }
             } else {
               array[i].title = "None found";
@@ -82,7 +82,7 @@ $(document).ready(function(){
               array[i].categories = "None found";
               array[i].description = "None found";
               array[i].pages = 0;
-              array[i].image_url = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
+              array[i].image_url = "https://s9.postimg.org/osei889kv/preview.jpg";
               array[i].preview_url = "None found";
               array[i].date_published = "None found";
             }
@@ -91,6 +91,7 @@ $(document).ready(function(){
             } else {
               array[i].snippet = "None found";
             }
+            // console.log('array',array[i])
             
             // make a div with class="row book" inside of holder
             var $newDiv = $("<div>");
@@ -109,14 +110,8 @@ $(document).ready(function(){
             $list.addClass("col-xs-10 list");
             $newDiv.append($list);
 
-            if (checkImg(array[i].image_url)) {
-              thumb = array[i].image_url;
-            } else {
-              thumb = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
-            }
-
             var $thumb = $("<img>");
-            $thumb.attr("src", thumb)
+            $thumb.attr("src", array[i].image_url)
                   .css("width","100%");
             $cover.append($thumb);
 
@@ -151,7 +146,7 @@ $(document).ready(function(){
       url: urlNYT,
       method: 'GET',
     }).done(function(result) {
-      console.log(result);
+      // console.log(result);
     }).fail(function(err) {
       // throw err;
     }).then(function(response){
@@ -210,7 +205,7 @@ $(document).ready(function(){
       if (checkImg(array[i].image_url)) {
         thumb = array[i].image_url;
       } else {
-        thumb = "http://s3.media.squarespace.com/production/456133/10392406/-S47jjKkHDV8/Tahk-Db1lGI/AAAAAAAAB6I/7cobBvPEyyg/s1600/3%2Bthe%2Boutline%2Bof%2Bhistory%2Brevised%2B%2528h.g.%2Bwells%2529.JPG";
+        thumb = "https://s9.postimg.org/osei889kv/preview.jpg";
       }
       $image_url.val(thumb);
 
