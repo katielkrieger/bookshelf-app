@@ -173,6 +173,7 @@ $(document).ready(function(){
       }
 
       var i = parseInt($selectedBook.attr('data-info'));
+      // console.log(array[i]);
 
       // var $title = $('input[name=title]');
       var $title = $('#title');
@@ -201,14 +202,7 @@ $(document).ready(function(){
       $snippet.val(array[i].snippet);
       $description.val(array[i].description);
       $pages.val(array[i].pages);
-
-      if (checkImg(array[i].image_url)) {
-        thumb = array[i].image_url;
-      } else {
-        thumb = "https://s9.postimg.org/osei889kv/preview.jpg";
-      }
-      $image_url.val(thumb);
-
+      $image_url.val(array[i].image_url);
       $preview_url.val(array[i].preview_url);
       $date_published.val(array[i].date_published);
       $nyt_review_url.val(nyt_review_url);
