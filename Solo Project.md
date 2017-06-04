@@ -18,8 +18,9 @@
 ## Questions/Issues
 
 1. (Google books images and preview links are on http, but my heroku site is on https, so it's complaining about that.)
+2. Fix navbar for mobile.
+3. Fix d3 for mobile.
 2. Add tests for followers, following.
-3. Write readme.
 
 ## Basic features
 
@@ -37,13 +38,21 @@
 ## Bonus features
 
 * DONE - Showing a NYT book review on the book show pages
-* DONEish - Parallax home page
+* DONEish - Parallax home page (went with a carousel feature instead)
 * DONE - Add a test to check password reset
 * NOT NEEDED - Remove duplicates from the book search
 * DONE - The ability to follow other users and see their booklists/bookshelves
 * DONE - A D3 vizualization using the book metadata collected
 * DONE - The ability to see all reviews by users you are following when you click on a book's show page
 * DONE - The ability to send a specific user or email address a book recommendation
+
+## Features suggested by users
+
+* Password reset on the login page (Amanda)
+* Sign in option on the last section of the welcome page (Amanda)
+* Commenting on other's books would be cool (Kurt)
+* It would be neat to comment or "like" books that other people have either read or are thinking of reading (Kurt)
+* Noel's issues with Goodreads: "It has lots of great features and I recommend it to everyone who I know who likes books. So good starting point and they seem pretty established. What drives me crazy is that it's hard to get to the page where you're actually reviewing in words (it's easy to get to the star ranking) and picking a bookshelf. Especially on the app. For example if I'm in the middle of a book and still want to write notes, I think you have to mark it as "already read" to get to the notes page. Another thing that drives me crazy is that when I add a book to my to-read list, that's when I want to add in "who told me about this" in that field. But again, you have to mark it as "already read" to get to that page, and then switch it back to "to read"."
 
 ## Milestone targets
 

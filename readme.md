@@ -50,6 +50,7 @@ To deploy this on a live system, follow the instructions [here](https://devcente
 * [SQLAlchemy](https://www.sqlalchemy.org/) - Used for database manipulation
 * [jQuery](http://jquery.com/) - Used to manipulate the DOM and make AJAX calls
 * [Bootstrap](http://getbootstrap.com/2.3.2/) - Used for page layout and responsive design
+* [Slick](http://kenwheeler.github.io/slick/) - Used for photo carousel on landing page
 * CSS
 * HTML
 
@@ -82,5 +83,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 * Special thanks to Elie, Matt, and Tim at [Rithm School](http://rithmschool.com/) for their support and guidance.
 * Thank you to [Google Books](https://developers.google.com/books/) for its Google Books API, which provided book metadata for this app.
 * Thank you to the [New York Times](http://developer.nytimes.com.) for its API, which was used to provide links to New York Times book reviews.
+* Thank you to [Slick](http://kenwheeler.github.io/slick/) for the photo carousel.
 
 

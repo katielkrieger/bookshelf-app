@@ -173,7 +173,7 @@ $(document).ready(function(){
       }
 
       var i = parseInt($selectedBook.attr('data-info'));
-      // console.log(array[i]);
+      console.log(array[i].image_url);
 
       // var $title = $('input[name=title]');
       var $title = $('#title');
