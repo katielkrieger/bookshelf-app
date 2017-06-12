@@ -7,6 +7,7 @@ from flask_login import current_user
 from flask import request
 
 
+## Awesome job testing.  You handled a lot of important tests here!
 class TestUser(TestCase):
 
     def _login_user(self,username,password,follow_redirects=False):
@@ -17,8 +18,9 @@ class TestUser(TestCase):
 
     def create_app(self):
         app.config["WTF_CSRF_ENABLED"] = False
-        app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///testing.db' 
-        return app       
+        app.config["SQLALCHEMY_ECHO"] = False
+        app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///testing.db'
+        return app
 
     def setUp(self):
     # """Disable CSRF, initialize a sqlite DB and seed a user"""
@@ -31,6 +33,9 @@ class TestUser(TestCase):
         """drop the db after each test"""
         db.drop_all()
 
+
+    # Generally speaking, you may want to move some of these functions to
+    # another test file.  Lots of the tests aren't directly related to auth
     def test_add_to_booklist(self):
         """Ensure user can add a book to their booklist"""
         with self.client:
@@ -291,8 +296,9 @@ class TestUser(TestCase):
             self.assertTrue(booklist)
 
     def test_user_registeration(self):
-    # """Ensure user can register"""
+    # """Ensure user can register"""   # any reason you commented out the doc strings?  Just curious
         with self.client:
+            # I like the example data you're using in this test!!
             response = self.client.post('/users/signup', data=dict(
                 username='tigarcia',password='moxies',name="Tim",email="tim@tim.com"
             ), follow_redirects=True)
@@ -364,7 +370,7 @@ class TestUser(TestCase):
             self.assertFalse(current_user.is_authenticated)
 
     def test_logout_route_requires_login(self):
-    # """Make sure that you can not log out without being logged in"""
+        """Make sure that you can not log out without being logged in"""
         response = self.client.get('/users/logout', follow_redirects=True)
         self.assertIn(b'Please log in to access this page', response.data)
 

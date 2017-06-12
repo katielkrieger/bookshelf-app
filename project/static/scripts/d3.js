@@ -1,12 +1,13 @@
 $(document).ready(function(){
 
+  // D3 Code looks good!
 
   // add d3 vizualiation on user home page
 
   var height = 400;
-  var padding = 80; 
+  var padding = 80;
   var paddingTop = 20;
-  var width = Math.min(window.innerWidth - 2*padding, 600); 
+  var width = Math.min(window.innerWidth - 2*padding, 600);
   var svg = d3.select('svg')
                 .attr('width', width)
                 .attr('height', height);
@@ -36,7 +37,7 @@ $(document).ready(function(){
                            .domain([0,10])
                            .range([height - padding, paddingTop]); // flipping y axis
             var xScale = d3.scaleLinear()
-                           .domain([0,xMax]) 
+                           .domain([0,xMax])
                            .range([padding, width - padding]);
 
             var horizontalAxis = d3.axisBottom(xScale);
@@ -48,7 +49,7 @@ $(document).ready(function(){
                 .call(horizontalAxis);
 
             svg.append("g")
-                .attr("transform", `translate(${padding}, 0)`) 
+                .attr("transform", `translate(${padding}, 0)`)
                 .style('font-family', 'Abril Fatface')
                 .call(verticalAxis);
 
@@ -98,10 +99,3 @@ $(document).ready(function(){
 
 
 });
-
-
-
-
-
-
-

@@ -32,15 +32,15 @@ def index(user_id):
     if form.validate():
       new_book = Book(
         title=request.form['title'],
-        author=request.form['author'], 
-        categories=request.form['categories'], 
-        snippet=request.form['snippet'], 
-        description=request.form['description'], 
-        pages=request.form['pages'], 
-        image_url=request.form['image_url'], 
-        preview_url=request.form['preview_url'], 
+        author=request.form['author'],
+        categories=request.form['categories'],
+        snippet=request.form['snippet'],
+        description=request.form['description'],
+        pages=request.form['pages'],
+        image_url=request.form['image_url'],
+        preview_url=request.form['preview_url'],
         date_published=request.form['date_published'],
-        nyt_review_url=request.form['nyt_review_url'] 
+        nyt_review_url=request.form['nyt_review_url']
       )
       # check if this book is already in the database - if it is, don't add it
       found_book = Book.query.filter_by(title=new_book.title).filter_by(author=new_book.author)
@@ -61,6 +61,8 @@ def index(user_id):
       )
       db.session.add(new_booklist)
       db.session.commit()
+
+      ## Remove commented out code.
       # test = db.session.query(Booklist).filter_by(user=user).filter_by(book=new_book)
       # from IPython import embed; embed()
       flash("Book added successfully!")
@@ -68,6 +70,8 @@ def index(user_id):
     flash("Please try again")
     return render_template('booklists/new.html', form=form, user=user)
   all_books = Booklist.query.filter_by(user=user).filter_by(list_type="booklist").all()
+
+  # Looks like you also have an N + 1 query problem here.
   return render_template('booklists/index.html', form=form, user=user, books=all_books)
 
 
@@ -102,7 +106,7 @@ def show(user_id, book_id):
       return redirect(url_for('booklists.index', user_id=user_id))
     flash("Please try again")
     return render_template('booklists/new.html', form=form, user=user)
-  
+
   booklist = Booklist.query.filter_by(user=user).filter_by(book=book).first()
   if request.method == b"PATCH":
     form = EditBooklistForm(request.form)

@@ -15,11 +15,11 @@ else:
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'postgres://localhost/solo-project'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_ECHO'] = True # I would make sure to make this false when in production
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or "who knows"
 app.config.update(dict(
-    DEBUG = True,
+    DEBUG = True, ## Also probably something you want to make false in prod
     MAIL_SERVER = 'smtp.googlemail.com',
     MAIL_PORT = 587,
     MAIL_USE_TLS = True,
@@ -28,7 +28,7 @@ app.config.update(dict(
     MAIL_PASSWORD = 'webinarz',
     ADMINS = ['katielkrieger@gmail.com']
 ))
-app.jinja_env.auto_reload = True
+app.jinja_env.auto_reload = True # Definitely want to make this false in prod
 
 modus = Modus(app)
 bcrypt = Bcrypt(app)
@@ -62,4 +62,3 @@ def root():
         following_ids = [f.id for f in following]
         bookshelves = Booklist.query.filter(Booklist.user_id.in_(following_ids)).order_by("rating desc").limit(120).all()
         return redirect(url_for('users.index', books=bookshelves))
-
