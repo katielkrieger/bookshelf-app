@@ -34,14 +34,14 @@ def index(user_id):
     if form.validate():
       new_book = Book(
         title=request.form['title'],
-        author=request.form['author'], 
-        categories=request.form['categories'], 
-        snippet=request.form['snippet'], 
-        description=request.form['description'], 
-        pages=request.form['pages'], 
-        image_url=request.form['image_url'], 
-        preview_url=request.form['preview_url'], 
-        date_published=request.form['date_published'], 
+        author=request.form['author'],
+        categories=request.form['categories'],
+        snippet=request.form['snippet'],
+        description=request.form['description'],
+        pages=request.form['pages'],
+        image_url=request.form['image_url'],
+        preview_url=request.form['preview_url'],
+        date_published=request.form['date_published'],
         nyt_review_url=request.form['nyt_review_url']
       )
       # check if this book is already in the database - if it is, don't add it
@@ -63,13 +63,12 @@ def index(user_id):
       )
       db.session.add(new_bookshelf)
       db.session.commit()
-      # test = db.session.query(Booklist).filter_by(user=user).filter_by(book=new_book)
-      # from IPython import embed; embed()
       flash("Book added successfully!")
       return redirect(url_for('bookshelves.index', user_id=user_id))
     flash("Please try again")
     return render_template('bookshelves/new.html', form=form, user=user)
   all_books = Booklist.query.filter_by(user=user).filter_by(list_type="bookshelf").all()
+  # Look into N+1 query issue
   return render_template('bookshelves/index.html', form=form, user=user, books=all_books)
 
 
@@ -154,4 +153,3 @@ def email(user_id, book_id):
     return redirect(url_for('bookshelves.index', user_id=user.id))
   flash("Invalid email address. Please try again.")
   return render_template('bookshelves/show.html', form=form, book=bookshelf, user=user)
-

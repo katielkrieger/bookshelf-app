@@ -13,13 +13,12 @@ if os.environ.get('ENV') == 'production':
 else:
     app.config.from_object('config.DevelopmentConfig')
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI') or 'postgres://localhost/solo-project'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_ECHO'] = False
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or "who knows"
 app.config.update(dict(
-    DEBUG = True,
+    DEBUG = False,
     MAIL_SERVER = 'smtp.googlemail.com',
     MAIL_PORT = 587,
     MAIL_USE_TLS = True,
@@ -28,7 +27,7 @@ app.config.update(dict(
     MAIL_PASSWORD = 'webinarz',
     ADMINS = ['katielkrieger@gmail.com']
 ))
-app.jinja_env.auto_reload = True
+app.jinja_env.auto_reload = False
 
 modus = Modus(app)
 bcrypt = Bcrypt(app)
@@ -62,4 +61,3 @@ def root():
         following_ids = [f.id for f in following]
         bookshelves = Booklist.query.filter(Booklist.user_id.in_(following_ids)).order_by("rating desc").limit(120).all()
         return redirect(url_for('users.index', books=bookshelves))
-

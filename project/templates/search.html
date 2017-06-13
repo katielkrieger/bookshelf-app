@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookshelf</title>
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <section class="top container">
+      <h1 class="header text-center">Search for a Book
+      </h1>
+      <h2 class="header text-center">By Title or Author
+      </h2>
+    </section>
+    <section class="top container">
+      <div class="row">
+        <form class="form" action="javascript:void(0)">
+          <div class="form-group">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+              <label class="sr-only" for="title">Title (required)</label>
+              <input type="text" class="form-control" id="title" placeholder="War and Peace">
+              <label class="sr-only" for="author">Author (optional)</label>
+              <input type="text" class="form-control" id="author" placeholder="Leo Tolstoy">
+            </div>
+            <div class="col-xs-6 col-xs-offset-3 text-center">
+              <button type="submit" class="btn btn-default search">Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="container">
+      <div class="row booklist">
+        <div class="col-xs-10 col-xs-offset-1 holder">
+          <div class="row holder">
+          <div class="col-xs-2 form">
+            <form action="{{ url_for('booklists.new', user_id=user.id) }}" method="POST">
+              {{ form.csrf_token }}
+              <p>
+                {{ form.title(placeholder="title") }}
+                <span class="text-danger">
+                  {% if form.title.errors %}
+                    {% for error in form.title.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.author(placeholder="author") }}
+                <span class="text-danger">
+                  {% if form.author.errors %}
+                    {% for error in form.author.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.categories(placeholder="categories") }}
+                <span class="text-danger">
+                  {% if form.categories.errors %}
+                    {% for error in form.categories.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.snippet(placeholder="snippet") }}
+                <span class="text-danger">
+                  {% if form.snippet.errors %}
+                    {% for error in form.snippet.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.description(placeholder="description") }}
+                <span class="text-danger">
+                  {% if form.description.errors %}
+                    {% for error in form.description.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.pages(placeholder="pages") }}
+                <span class="text-danger">
+                  {% if form.pages.errors %}
+                    {% for error in form.pages.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.image_url(placeholder="image url") }}
+                <span class="text-danger">
+                  {% if form.image_url.errors %}
+                    {% for error in form.image_url.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.preview_url(placeholder="preview url") }}
+                <span class="text-danger">
+                  {% if form.preview_url.errors %}
+                    {% for error in form.preview_url.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+              <p>
+                {{ form.date_published(placeholder="date published") }}
+                <span class="text-danger">
+                  {% if form.date_published.errors %}
+                    {% for error in form.date_published.errors %}
+                      {{ error }}
+                    {% endfor %}
+                  {% endif %}
+                </span>
+              </p>
+            <div class="col-xs-2 cover"></div>
+            <div class="col-xs-12 list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="container">
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <!-- <a href="https://developer.nytimes.com"><img src="https://books.google.com/books/content?id=bKq3oAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"></a> -->
+        </div>
+      </div>
+    </footer>
+
+  </div>
+    
+</body>
+</html>

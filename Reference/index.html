@@ -83,8 +83,6 @@
         $buttons.on("click", function(event){
           console.log("clicked");
 
-          // either headlines or all: ($(this).attr("value"));
-
           var searchText = $('#search').val();
           var searchArr = searchText.trim().split(" ");
           var q = "";
@@ -99,29 +97,17 @@
             }
           }
 
-          // if($(this).attr("value") === "title"){ // title
-          //   type = "intitle";
-          // } else { // author
-          //   type = "inauthor";
-          // }
-          console.log(q);
-
-          // GET https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
-
-
           var url = `https://www.googleapis.com/books/v1/volumes?q=${q}&key=${apiKey}`;
 
           $.ajax({
             url: url,
             method: 'GET',
           }).done(function(result) {
-            // console.log(result);
           }).fail(function(err) {
             console.log(err);
             throw err;
           }).then(function(response){
             console.log(response);
-            // console.log(response.items[0].volumeInfo.imageLinks.thumbnail);
 
               var $holder = $(".holder")
               var $newClipping = $(".newClipping");
@@ -141,21 +127,6 @@
                     .css("font-weight", "normal")
                     .css("margin", "2rem 0 2rem 0");
                   $newClipping.append($leadDiv);
-
-                  // var $yearDiv = $("<div>")
-                  //   .text("DATE: " + response.response.docs[i].pub_date.substring(5,7) + "/" + response.response.docs[i].pub_date.substring(8,10) + "/" + response.response.docs[i].pub_date.substring(0,4))
-                  //   .css("font-size", "1.5rem")
-                  //   .css("font-weight", "lighter");
-                  // $newClipping.append($yearDiv);
-
-                  // var $webDiv = $("<div>")
-                  //   .css("margin-bottom", "1.5rem");
-                  // $newClipping.append($webDiv);
-                  // var $webAnchor = $("<a>")
-                  //   .attr("href",response.response.docs[i].web_url)
-                  //   .text("Click here for original article")
-                  //   .css("font-size", "1.5rem");
-                  // $webDiv.append($webAnchor);
                   break;
                 }
               }

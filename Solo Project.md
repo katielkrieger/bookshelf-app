@@ -21,6 +21,7 @@
 2. Fix navbar for mobile.
 3. Fix d3 for mobile.
 2. Add tests for followers, following.
+3. If you search for a second book without refreshing the page, the form no longer appears when you select a book.
 
 ## Basic features
 
@@ -53,6 +54,10 @@
 * Commenting on other's books would be cool (Kurt)
 * It would be neat to comment or "like" books that other people have either read or are thinking of reading (Kurt)
 * Noel's issues with Goodreads: "It has lots of great features and I recommend it to everyone who I know who likes books. So good starting point and they seem pretty established. What drives me crazy is that it's hard to get to the page where you're actually reviewing in words (it's easy to get to the star ranking) and picking a bookshelf. Especially on the app. For example if I'm in the middle of a book and still want to write notes, I think you have to mark it as "already read" to get to the notes page. Another thing that drives me crazy is that when I add a book to my to-read list, that's when I want to add in "who told me about this" in that field. But again, you have to mark it as "already read" to get to that page, and then switch it back to "to read"."
+* Editing. I just tried to edit one of my reviews, but when I clicked to edit, everything was erased. Possible to pre-load the existing rating/comments? - Kurt
+* It would be neat to have an "invite" link, where I can email people a link to my page. Ideally they would not have to log-in to view my bookshelf or booklist, but if they created an account they would automatically "follow" me. Recommending books to others would be a really cool tool - but I suspect that is a lot of work. - Kurt
+* Possible to add an optional field for "year" book read? That way I can remember what I read recently versus a long-time ago. - Kurt
+* Would also be neat to be able to filter/sort the bookshelf, perhaps by rating, author, year read (see above). - Kurt
 
 ## Milestone targets
 
